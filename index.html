@@ -177,6 +177,53 @@
   footer{margin-top:4rem;padding-top:1.5rem;border-top:1px solid var(--line);font-size:.8rem;color:var(--muted)}
   footer p{max-width:var(--measure)}
 
+
+  /* ---------- load sequence ---------- */
+  #splash{
+    position:fixed;inset:0;z-index:60;background:var(--ground);
+    display:flex;align-items:center;justify-content:center;
+  }
+  #splash.gone{opacity:0;pointer-events:none;transition:opacity .55s ease .1s}
+  .rig{position:relative;width:min(30rem,74vw);aspect-ratio:900/630;text-align:center}
+  .lyr{position:absolute;width:auto;height:auto;opacity:0}
+  /* each layer is cropped to its own ink and placed by the inset it occupies
+     in the full mark, so the three reassemble pixel-exact */
+  #splash .arch {top:1.587%;right:27.222%;bottom:59.524%;left:27.333%}
+  #splash .wingL,#splash .wingR{top:6.984%;right:.556%;bottom:45.873%;left:.778%}
+  #splash .shld {top:40.476%;right:18.889%;bottom:.635%;left:19.000%}
+  .lyr img,.lyr{max-width:100%}
+  .wingL{clip-path:inset(0 50% 0 0)}
+  .lyr{width:auto}
+  .wingR{clip-path:inset(0 0 0 50%)}
+  .sname{
+    position:absolute;left:0;right:0;top:104%;margin:0;
+    font-family:Archivo,sans-serif;font-weight:600;
+    font-size:clamp(1.5rem,4.6vw,2.1rem);letter-spacing:.3em;
+    color:var(--steel);opacity:0;
+  }
+  .screed{
+    position:absolute;left:0;right:0;top:128%;margin:0;
+    font-size:.7rem;letter-spacing:.3em;color:var(--muted);opacity:0;
+  }
+
+  @keyframes descend{from{opacity:0;transform:translateY(-28%) scale(.96)}to{opacity:1;transform:none}}
+  @keyframes sweepL {from{opacity:0;transform:translateX(-26%)}to{opacity:1;transform:none}}
+  @keyframes sweepR {from{opacity:0;transform:translateX(26%)}to{opacity:1;transform:none}}
+  @keyframes rise   {from{opacity:0;transform:translateY(22%) scale(.97)}to{opacity:1;transform:none}}
+  @keyframes settle {from{opacity:0;letter-spacing:.62em}to{opacity:1;letter-spacing:.3em}}
+  @keyframes fadein {to{opacity:1}}
+
+  #splash .arch  {animation:descend .72s cubic-bezier(.19,1,.22,1)  .10s both}
+  #splash .wingL {animation:sweepL  .66s cubic-bezier(.19,1,.22,1)  .52s both}
+  #splash .wingR {animation:sweepR  .66s cubic-bezier(.19,1,.22,1)  .52s both}
+  #splash .shld  {animation:rise    .70s cubic-bezier(.19,1,.22,1)  .94s both}
+  #splash .sname {animation:settle  .80s cubic-bezier(.19,1,.22,1) 1.34s both}
+  #splash .screed{animation:fadein  .60s ease                      1.74s both}
+
+  @media (prefers-reduced-motion:reduce){
+    #splash{display:none}
+  }
+
   @media (prefers-reduced-motion:no-preference){
     .inv{animation:cut .45s cubic-bezier(.2,.8,.2,1) .8s both}
     @keyframes cut{from{opacity:0}to{opacity:1}}
@@ -190,6 +237,21 @@
 </style>
 </head>
 <body>
+<!-- Load sequence. The REAL mark, split into three layers that assemble.
+       Not a redraw: p_arch / p_wing / p_shield are slices of mark.png and add
+       back to it pixel for pixel. Shown once per session, skipped entirely for
+       anyone who asked for reduced motion. -->
+  <div id="splash" aria-hidden="true">
+    <div class="rig">
+      <img class="lyr wingL" src="p_wing.png" alt="" style="width:98.67%">
+      <img class="lyr wingR" src="p_wing.png" alt="" style="width:98.67%">
+      <img class="lyr arch"  src="p_arch.png" alt="" style="width:45.44%">
+      <img class="lyr shld"  src="p_shield.png" alt="" style="width:62.11%">
+      <p class="sname">ABERNATE</p>
+      <p class="screed">GOVERN &nbsp;|&nbsp; CONTROL &nbsp;|&nbsp; PROTECT</p>
+    </div>
+  </div>
+
 <div class="wrap">
 
   <header>
@@ -248,7 +310,7 @@
       <li><b>It refuses by construction, not by threshold</b>
         <span>A worker with five strong governance properties and one near-dead one does not average out to acceptable. It is refused, and the failing property is named.</span></li>
       <li><b>It ships the record of its own defeats</b>
-        <span>Eight forgeries were run against its evidence chain. Five were caught. Three were not. Two of those were fixed and one is structural, stated rather than buried, and asserted as a passing test so it cannot be quietly dropped.</span></li>
+        <span>Eight forgeries were run against its evidence chain. Five were caught outright, two more were missed and then fixed, and one is structural. That last one is stated rather than buried, and asserted as a passing test so it cannot be quietly dropped. All eight were re-run against the shipped verifier before this page was published.</span></li>
       <li><b>Two prior versions had their flagship claim measured false</b>
         <span>Both were repaired and both repairs were reversion-proven. Those records ship with the package rather than being cleaned out of it.</span></li>
     </ul>
@@ -258,8 +320,8 @@
       <tr><td>delete a receipt from the middle</td><td>CAUGHT</td></tr>
       <tr><td>swap two adjacent receipts</td><td>CAUGHT</td></tr>
       <tr><td>remove the head receipt</td><td>CAUGHT</td></tr>
-      <tr><td>drop the last receipt</td><td>UNDETECTED, fixed</td></tr>
-      <tr><td>empty ledger</td><td>UNDETECTED, fixed</td></tr>
+      <tr><td>drop the last receipt</td><td>CAUGHT, missed in v9.1</td></tr>
+      <tr><td>empty ledger</td><td>CAUGHT, missed in v9.1</td></tr>
       <tr><td>tamper then recompute the chain</td><td>UNDETECTED, structural</td></tr>
     </table>
   </section>
@@ -296,5 +358,21 @@
   </footer>
 
 </div>
+
+<script>
+(function(){
+  var s=document.getElementById('splash');
+  if(!s) return;
+  var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var seen=false;
+  try{ seen = sessionStorage.getItem('ab_seen')==='1'; }catch(e){}
+  if(reduce||seen){ s.remove(); return; }
+  try{ sessionStorage.setItem('ab_seen','1'); }catch(e){}
+  var done=function(){ s.classList.add('gone'); setTimeout(function(){ s.remove(); },700); };
+  var t=setTimeout(done,2900);
+  s.addEventListener('click',function(){ clearTimeout(t); done(); });
+  document.addEventListener('keydown',function(e){ if(e.key==='Escape'){ clearTimeout(t); done(); }});
+})();
+</script>
 </body>
 </html>
