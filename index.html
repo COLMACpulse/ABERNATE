@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ABERNATE · a release gate for automated work</title>
+<meta name="description" content="Automated workers take real actions. ABERNATE decides whether each action is permitted, at run time, and leaves a verifiable record of who allowed it.">
+<meta property="og:title" content="ABERNATE">
+<meta property="og:description" content="A release gate for automated work. The authority decides, before the work ships.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://abernate.com/">
+<meta property="og:image" content="https://abernate.com/lockup.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="icon" href="favicon.png" type="image/png">
+<style>
+  :root{
+    --ground:#0F1215;
+    --panel:#171C21;
+    --steel:#E3E7EB;
+    --muted:#8B949E;
+    --line:#252C33;
+    --measure:36rem;
+  }
+
+  *{box-sizing:border-box}
+  html{-webkit-text-size-adjust:100%}
+
+  body{
+    margin:0;
+    background:var(--ground);
+    color:var(--steel);
+    font-family:Archivo,system-ui,sans-serif;
+    font-size:17px;
+    line-height:1.62;
+    -webkit-font-smoothing:antialiased;
+  }
+
+  .wrap{max-width:54rem;margin:0 auto;padding:0 1.5rem 6rem}
+
+  a{color:var(--steel);text-decoration:underline;text-underline-offset:.2em;text-decoration-thickness:1px}
+  a:hover{text-decoration-thickness:2px}
+  a:focus-visible{outline:2px solid var(--steel);outline-offset:3px}
+
+  code,pre,.mono{font-family:"JetBrains Mono",ui-monospace,monospace}
+
+  /* ---------- masthead: the mark is symmetrical, so it is centred ---------- */
+  header{padding:4.5rem 0 0;text-align:center}
+  header img{width:clamp(8rem,22vw,11rem);height:auto;display:block;margin:0 auto}
+
+  .creed{
+    margin:1.6rem 0 0;
+    font-size:.8rem;
+    letter-spacing:.34em;
+    color:var(--muted);
+    font-weight:500;
+  }
+
+  /* ---------- lede ---------- */
+  .lede{
+    margin:3.4rem auto 0;
+    max-width:22ch;
+    text-align:center;
+    font-size:clamp(1.6rem,4.6vw,2.35rem);
+    line-height:1.22;
+    font-weight:600;
+    letter-spacing:-.018em;
+  }
+
+  .sub-lede{
+    margin:1.4rem auto 0;
+    max-width:46ch;
+    text-align:center;
+    color:var(--muted);
+    font-size:1.02rem;
+  }
+
+  /* ---------- the artifact: a real run, verbatim ---------- */
+  .run{
+    margin:3rem 0 0;
+    border:1px solid var(--line);
+    background:var(--panel);
+    font-family:"JetBrains Mono",monospace;
+    font-size:.84rem;
+  }
+
+  .run-head{
+    padding:.7rem 1.1rem;
+    border-bottom:1px solid var(--line);
+    color:var(--muted);
+    font-size:.74rem;
+    letter-spacing:.12em;
+  }
+
+  .run pre{margin:0;padding:1.1rem;overflow-x:auto;line-height:1.7}
+
+  .k{color:var(--muted)}
+  .hl{color:var(--steel);font-weight:700}
+  .inv{background:var(--steel);color:var(--ground);padding:.05rem .35rem;font-weight:700;white-space:pre}
+
+  .run-note{
+    margin:1.2rem 0 0;
+    max-width:var(--measure);
+    color:var(--muted);
+    font-size:.97rem;
+  }
+
+  /* ---------- sections ---------- */
+  section{margin-top:4.5rem;padding-top:2.2rem;border-top:1px solid var(--line)}
+
+  h2{font-size:1.2rem;font-weight:600;margin:0 0 1.2rem;letter-spacing:-.01em}
+  p{max-width:var(--measure)}
+  .muted{color:var(--muted);font-size:.97rem}
+
+  /* the four layers are a real conjunction, so they are drawn as one ---------- */
+  .layers{
+    margin:1.6rem 0 0;
+    border:1px solid var(--line);
+    max-width:var(--measure);
+  }
+  .layer{
+    padding:.85rem 1.1rem;
+    display:grid;
+    grid-template-columns:1.6rem 1fr;
+    gap:0 .9rem;
+    font-size:.98rem;
+  }
+  .layer + .layer{border-top:1px solid var(--line)}
+  .layer span:first-child{
+    font-family:"JetBrains Mono",monospace;
+    color:var(--muted);
+    font-size:.82rem;
+    padding-top:.15rem;
+  }
+  .conj{
+    padding:.8rem 1.1rem;
+    border-top:1px solid var(--line);
+    background:var(--panel);
+    font-family:"JetBrains Mono",monospace;
+    font-size:.82rem;
+    color:var(--muted);
+  }
+
+  ul.rows{margin:0;padding:0;list-style:none}
+  ul.rows li{padding:1.05rem 0;border-top:1px solid var(--line);max-width:var(--measure)}
+  ul.rows li:first-child{border-top:none;padding-top:0}
+  ul.rows b{display:block;font-weight:600}
+  ul.rows span{color:var(--muted);font-size:.97rem}
+
+  table.forge{
+    border-collapse:collapse;
+    margin:1.4rem 0 0;
+    font-family:"JetBrains Mono",monospace;
+    font-size:.82rem;
+    width:100%;
+    max-width:var(--measure);
+  }
+  table.forge td{padding:.45rem .7rem;border-top:1px solid var(--line);vertical-align:top}
+  table.forge td:last-child{color:var(--muted);white-space:nowrap}
+
+  /* ---------- the disclosure block: same weight, deliberately ---------- */
+  .disclose{border:1px solid var(--steel);padding:1.5rem 1.6rem;margin:1.6rem 0 0;max-width:var(--measure)}
+  .disclose p{margin:0}
+  .disclose p + p{margin-top:1rem}
+
+  /* ---------- contact ---------- */
+  .contact{margin-top:4.5rem;padding-top:2.2rem;border-top:2px solid var(--steel)}
+  .mailto{
+    display:inline-block;
+    font-family:"JetBrains Mono",monospace;
+    font-size:clamp(1.05rem,3.2vw,1.35rem);
+    font-weight:500;
+    margin-top:.5rem;
+  }
+
+  footer{margin-top:4rem;padding-top:1.5rem;border-top:1px solid var(--line);font-size:.8rem;color:var(--muted)}
+  footer p{max-width:var(--measure)}
+
+  @media (prefers-reduced-motion:no-preference){
+    .inv{animation:cut .45s cubic-bezier(.2,.8,.2,1) .8s both}
+    @keyframes cut{from{opacity:0}to{opacity:1}}
+  }
+
+  @media (max-width:560px){
+    body{font-size:16px}
+    .run pre{font-size:.76rem}
+    .creed{letter-spacing:.2em;font-size:.72rem}
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header>
+    <img src="lockup.png" alt="ABERNATE">
+  </header>
+
+  <p class="lede">A release gate for automated work.</p>
+  <p class="sub-lede">Automated workers are taking real actions. ABERNATE decides whether each action is permitted, at run time, and leaves a record that settles who allowed it.</p>
+
+  <div class="run" role="figure" aria-label="A real run: the mission passed and did not release">
+    <div class="run-head">A REAL RUN, VERBATIM. THE SHIPPED SAMPLE MISSION, RELEASE REQUESTED.</div>
+<pre>{
+  <span class="k">"mission_id"</span>: "recover-sample-001",
+  <span class="k">"operational_status"</span>: <span class="hl">"PASS"</span>,
+  <span class="k">"steps_planned"</span>: 4,
+  <span class="k">"steps_executed"</span>: 4,
+  <span class="k">"receipt_chain"</span>: <span class="hl">"VALID"</span>,
+  <span class="k">"release_required"</span>: true,
+  <span class="k">"released"</span>: <span class="inv">false</span>,
+  <span class="k">"squad_leader"</span>: <span class="inv">"BLOCKED: no SQUAD LEADER clearance for mission recover-sample-001: run the go/no-go board and record a GO before release"</span>,
+  <span class="k">"final_receipt_hash"</span>: "ec18a705d090f8d9c5b5ece7...",
+  <span class="k">"metrics"</span>: {
+    <span class="k">"completion_ratio"</span>: 1.0,
+    <span class="k">"successful_ratio"</span>: 1.0,
+    <span class="k">"authority_coverage"</span>: 1.0,
+    <span class="k">"receipt_integrity"</span>: 1.0
+  }
+}</pre>
+  </div>
+
+  <p class="run-note">The work succeeded. Every step ran, the chain verified, every metric came back at 1.0. It still did not ship, because no human had recorded a decision. That is the product.</p>
+
+  <section>
+    <h2>The problem this answers</h2>
+    <p>The failure organisations are insuring against is a single one: the system did something nobody authorised, and afterwards there is no record that settles what happened or who allowed it.</p>
+    <p>Most tooling answers that at deploy time, with configuration and review. ABERNATE answers it at run time, on every action.</p>
+  </section>
+
+  <section>
+    <h2>Authority is an intersection, not a setting</h2>
+    <p>Four layers decide whether an action may happen. No layer can grant what a higher layer forbids.</p>
+    <div class="layers">
+      <div class="layer"><span>1</span><span>What the worker is capable of</span></div>
+      <div class="layer"><span>2</span><span>What the command permits</span></div>
+      <div class="layer"><span>3</span><span>What fleet policy allows</span></div>
+      <div class="layer"><span>4</span><span>What the mission actually asked for</span></div>
+      <div class="conj">execution is conjunctive &nbsp;·&nbsp; one failed condition stops the action rather than being averaged away</div>
+    </div>
+    <p class="muted" style="margin-top:1.4rem">A human release gate sits at the end. It can only block, never grant. A policy that omits the gate is refused at load, so it cannot be disabled by being forgotten.</p>
+    <p class="muted">Every step emits a hash-chained receipt. Whoever receives that ledger can verify it with a shipped command, without our help and without trusting us.</p>
+  </section>
+
+  <section>
+    <h2>What is unusual about it</h2>
+    <ul class="rows">
+      <li><b>It refuses by construction, not by threshold</b>
+        <span>A worker with five strong governance properties and one near-dead one does not average out to acceptable. It is refused, and the failing property is named.</span></li>
+      <li><b>It ships the record of its own defeats</b>
+        <span>Eight forgeries were run against its evidence chain. Five were caught. Three were not. Two of those were fixed and one is structural, stated rather than buried, and asserted as a passing test so it cannot be quietly dropped.</span></li>
+      <li><b>Two prior versions had their flagship claim measured false</b>
+        <span>Both were repaired and both repairs were reversion-proven. Those records ship with the package rather than being cleaned out of it.</span></li>
+    </ul>
+    <table class="forge">
+      <tr><td>rewrite one receipt's status</td><td>CAUGHT</td></tr>
+      <tr><td>reverse the whole ledger</td><td>CAUGHT</td></tr>
+      <tr><td>delete a receipt from the middle</td><td>CAUGHT</td></tr>
+      <tr><td>swap two adjacent receipts</td><td>CAUGHT</td></tr>
+      <tr><td>remove the head receipt</td><td>CAUGHT</td></tr>
+      <tr><td>drop the last receipt</td><td>UNDETECTED, fixed</td></tr>
+      <tr><td>empty ledger</td><td>UNDETECTED, fixed</td></tr>
+      <tr><td>tamper then recompute the chain</td><td>UNDETECTED, structural</td></tr>
+    </table>
+  </section>
+
+  <section>
+    <h2>What it is not</h2>
+    <ul class="rows">
+      <li><b>Not tamper-proof</b>
+        <span>It is tamper-evident against a party who does not hold the ledger. It is not evidence against whoever does hold it. Closing that gap needs a signature or an external anchor, which is the obvious first joint project.</span></li>
+      <li><b>Not an agent framework, and not a competitor to one</b>
+        <span>It is the layer that decides whether an action is permitted, and what record exists afterwards.</span></li>
+      <li><b>Not portable across machines, yet</b>
+        <span>Runs are deterministic at a fixed path and reproduce byte-identical receipt hashes there. Receipts embed absolute paths, so the same run on another machine produces different hashes. Named in the brief.</span></li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>Before you spend time on this</h2>
+    <div class="disclose">
+      <p><b>Nobody has run it but us.</b> No production deployment. No external user. We would rather you hear that here than find it.</p>
+      <p><b>There is no patent and there will not be one.</b> The work was assessed against prior art and a filing was judged not warranted. The reasoning was written down rather than left as a gap. This is a copyright, trade-secret and contract asset.</p>
+    </div>
+    <p class="muted" style="margin-top:1.6rem">44 of 44 tests pass cold on Python 3.12, standard library only, no network, no dependencies, offline. The internal manifest is generated from the tree and refuses when the two disagree, because a hand-typed count is what went wrong twice.</p>
+  </section>
+
+  <div class="contact">
+    <h2>Terms</h2>
+    <p>Available for outright sale or license. Delivered as a technical packet with provenance, hashes, and the full defect history. Evaluation copies are confidential and carry no patent license.</p>
+    <a class="mailto" href="mailto:hello@abernate.com?subject=ABERNATE%20packet%20request">hello@abernate.com</a>
+  </div>
+
+  <footer>
+    <p>Proprietary work product of Range Art and Design LLC (CA 202359212028), trading as COLMACpulse. No open-source license is granted.</p>
+  </footer>
+
+</div>
+</body>
+</html>

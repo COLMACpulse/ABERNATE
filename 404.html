@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Not found · ABERNATE</title>
+<meta name="robots" content="noindex">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;600&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+<link rel="icon" href="favicon.png" type="image/png">
+<style>
+  :root{--ground:#0F1215;--panel:#171C21;--steel:#E3E7EB;--muted:#8B949E;--line:#252C33}
+  *{box-sizing:border-box}
+  body{margin:0;min-height:100vh;display:flex;align-items:center;background:var(--ground);
+       color:var(--steel);font-family:Archivo,system-ui,sans-serif;font-size:17px;line-height:1.62;
+       -webkit-font-smoothing:antialiased}
+  .wrap{max-width:54rem;margin:0 auto;padding:3rem 1.5rem;width:100%}
+  img{width:6.5rem;height:auto;display:block;margin:0 0 2.5rem}
+  .run{border:1px solid var(--line);background:var(--panel);font-family:"JetBrains Mono",monospace;
+       font-size:.84rem;max-width:36rem}
+  .row{display:grid;grid-template-columns:7rem 1fr;gap:0 1rem;padding:.8rem 1.1rem}
+  .row + .row{border-top:1px solid var(--line)}
+  .k{color:var(--muted)}
+  .inv{background:var(--steel);color:var(--ground);padding:.05rem .35rem;font-weight:700}
+  p{max-width:36rem}
+  a{color:var(--steel);text-underline-offset:.2em}
+  a:focus-visible{outline:2px solid var(--steel);outline-offset:3px}
+  @media (max-width:560px){.row{grid-template-columns:1fr;gap:.15rem}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <img src="mark.png" alt="ABERNATE">
+  <div class="run">
+    <div class="row"><span class="k">requested</span><span id="path">this address</span></div>
+    <div class="row"><span class="k">status</span><span class="inv">NOT FOUND</span></div>
+  </div>
+  <p style="margin-top:1.6rem">Not found is a different statement from does not exist. This address does not resolve to anything on this site.</p>
+  <p><a href="/">Go to the front page</a></p>
+</div>
+<script>
+  var el=document.getElementById('path');
+  if(el){el.textContent=location.pathname.slice(0,120)||'this address';}
+</script>
+</body>
+</html>
