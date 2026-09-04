@@ -13,7 +13,7 @@ repository is exactly what is served.
 |---|---|---|
 | `index.html` | yes | The entire site. Structure, styles and content in one file. |
 | `404.html` | yes | Shown for any unknown path. GitHub Pages picks this up by name. |
-| `lockup.png` | yes | The full mark with wordmark and creed, recoloured to steel for the dark ground. |
+| `lockup.png` | yes | The full mark with wordmark and creed, recolored to steel for the dark ground. |
 | `mark.png` | yes | The mark alone, used on the 404. |
 | `favicon.png` | yes | The mark, squared and padded. |
 | `robots.txt` | yes | Allows crawling and points at the sitemap. |
@@ -74,8 +74,8 @@ Everything lives in `index.html`. The palette is at the top of the stylesheet:
 --line:#252C33;     /* hairlines */
 ```
 
-There is no accent colour anywhere, and that is a decision rather than an
-omission. The mark is monochrome metal, and the page emphasises by weight,
+There is no accent color anywhere, and that is a decision rather than an
+omission. The mark is monochrome metal, and the page emphasizes by weight,
 inversion and space instead of by hue. A traffic-light palette on a page about
 refusal would read as a dashboard, which this is not.
 
