@@ -3,10 +3,10 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>ABERNATE · permission to ship your agents</title>
-<meta name="description" content="Your agents are built and nobody will sign off on them. ABERNATE decides whether each action is permitted at the moment it happens, and writes a signed receipt your approver can verify without trusting you.">
+<title>ABERNATE · permission to ship the agents</title>
+<meta name="description" content="Finished agents sit in staging because nobody will sign for them. ABERNATE decides whether each action is permitted at the moment it happens, and writes a signed receipt the approver can verify independently.">
 <meta property="og:title" content="ABERNATE">
-<meta property="og:description" content="Your agents are built. Nobody will sign off on them. This is the part that gets them approved.">
+<meta property="og:description" content="Finished agents do not ship. Nobody will sign for them. This is the part that gets them cleared.">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://abernate.com/">
 <meta property="og:image" content="https://abernate.com/lockup.png">
@@ -165,8 +165,8 @@
   <header><img src="lockup.png" alt="ABERNATE"></header>
 
   <div class="hero">
-    <h1>Your agents are built. Nobody will sign off on them.</h1>
-    <p class="kick">Security will not clear it. Legal will not clear it. So a finished system sits in staging for two quarters while the people who built it move on. This is the part that gets it approved.</p>
+    <h1>Finished agents do not ship. Nobody will sign for them.</h1>
+    <p class="kick">The CISO will not sign it. The general counsel will not sign it. So a refund agent finished in March has never touched a customer, and the two engineers who wrote it have moved to other work. This is the part that gets it cleared.</p>
   </div>
 
   <div class="receipt">
@@ -202,10 +202,10 @@
 
 <div class="money">
   <div class="wrap">
-    <h2>The automation you already paid for is stuck in staging.</h2>
-    <p>That is the money. Not a saving, not a projection. Work that is finished, budgeted and unshipped, waiting on somebody who will not put their name to it.</p>
-    <p>They are right to hesitate. Today the honest answer to <b>"was that action authorized?"</b> is a shrug and a log file. Give them a signed receipt per action, naming the authority that allowed it and the person who cleared it, and the approval turns from a judgement call into a document.</p>
-    <p class="small">Three other lines show up in the business case and none of them are ours to quantify. EU AI Act exposure runs to €35 million or 7% of turnover, and Finland has been enforcing since January 2026. SOC 2 and ISO evidence is assembled by people at consulting rates, and here it is produced per action at no cost. And when an agent does cause a loss, proving what was authorized is the difference between a contained incident and eating the whole thing. <b>Nobody has measured a dollar of this yet, so we are not going to print one.</b></p>
+    <h2>Two engineers. Six months. It has never run.</h2>
+    <p>That is the money. Not a saving, not a projection. A finished system, already on the books, held at the last step by a CISO who will not put her name to it.</p>
+    <p>She is right to hesitate. When the board asks <b>"was that action authorized?"</b> she has a log file and an opinion. A signed receipt for every action, naming the policy that allowed it and the human who cleared it, turns her approval from a judgement call she owns personally into a document she can produce.</p>
+    <p class="small">Three other lines show up in the business case and none of them are ours to quantify. EU AI Act exposure runs to €35 million or 7% of turnover, and Finland has been enforcing since January 2026. SOC 2 and ISO evidence is assembled by people at consulting rates, and here it is produced per action at no cost. And when the refund agent does issue the wrong refund, proving what was authorized is the difference between a contained incident and the company eating the loss. <b>Nobody has measured a dollar of this yet, so we are not going to print one.</b></p>
   </div>
 </div>
 
@@ -213,8 +213,8 @@
 
   <section>
     <h2 class="sec">Nobody can answer "was that allowed?"</h2>
-    <p>An agent deletes a customer record. Three weeks later the customer asks why, and someone has to say whether that deletion was permitted. The logs show it happened. They do not show which policy allowed it, what access it ran under, or whether a person ever approved it.</p>
-    <p>Most governance tools settle this at deploy time, in a config review or an approval workflow. That decision gets made once, months before the action, against a world that has since changed.</p>
+    <p>An agent deletes a customer record. Three weeks later the customer's lawyer asks why, and a support lead has to answer. The logs show the deletion happened. They do not show which policy allowed it, what credentials it ran under, or whether anyone on staff approved it.</p>
+    <p>Most governance tools settle this at deploy time, in a config review the platform team signed off in March. That decision was made once, against permissions, staff and data that have all changed since.</p>
     <p><b>ABERNATE decides at the action. Every step, every time.</b></p>
   </section>
 
@@ -228,17 +228,17 @@
       <div class="row"><span class="n">04</span><span>Did this job actually ask for it? An action nobody requested is refused even when all three above allow it.</span></div>
       <div class="all">ALL FOUR, OR NOTHING &nbsp;·&nbsp; five strong properties and one dead one is a refusal, and the dead one gets named. Nothing averages out.</div>
     </div>
-    <p class="muted" style="margin-top:1.8rem">A person has the last word and they can only say no. Approval cannot push an action through a check that failed, and a policy written without that gate is rejected when it loads, so nobody disables it by forgetting it.</p>
-    <p class="muted">Every step writes a receipt, hash-linked to the one before it and signed. Hand that file to a customer, an auditor or a court and they check it themselves with a command that ships in the package. They do not have to trust you, and they do not have to call us.</p>
+    <p class="muted" style="margin-top:1.8rem">A named human has the last word and can only say no. Their GO cannot push an action through a check that already failed, and a policy written without that gate is rejected the moment it loads, so no engineer disables it by forgetting it.</p>
+    <p class="muted">Every step writes a receipt, hash-linked to the one before it and signed. That file goes to the customer's lawyer, the SOC 2 auditor or opposing counsel. Each checks it with a command that ships in the package. None has to trust the operator, and none has to call us.</p>
   </section>
 
   <section>
-    <h2 class="sec">Three things you will not find elsewhere</h2>
+    <h2 class="sec">Three things not found elsewhere</h2>
     <ul class="rows">
       <li><b>It refuses on the weakest link, never the average</b>
         <span>Scoring systems let a strong result cover a bad one. Here a single failed condition stops the action and the output names which one. There is no total high enough to pass a refusal.</span></li>
       <li><b>It ships the record of its own defeats</b>
-        <span>Ten forgeries were run against its evidence chain and all ten are caught. Each is a passing test, so none can be quietly dropped. They are ten attacks we thought of; an attack nobody here thought of is not in that number.</span></li>
+        <span>Ten forgeries were run against its evidence chain and all ten are caught. Each is a passing test, so none can be quietly dropped. They are ten attacks this team thought of. An attack nobody here thought of is not in that number.</span></li>
       <li><b>Three earlier versions had a flagship claim measured false</b>
         <span>Each was found by attacking the claim rather than restating it, repaired, and proven by putting the defect back and watching the test fail. Those records ship with the package instead of being cleaned out of it.</span></li>
     </ul>
@@ -251,36 +251,32 @@
       <tr><td>drop the last receipt</td><td>CAUGHT</td></tr>
       <tr><td>empty ledger</td><td>CAUGHT</td></tr>
       <tr class="was"><td>tamper, then recompute the whole chain</td><td>WAS UNFIXABLE</td></tr>
-      <tr><td>re-sign a forged ledger with your own key</td><td>CAUGHT</td></tr>
+      <tr><td>re-sign a forged ledger with a different key</td><td>CAUGHT</td></tr>
       <tr><td>strip one receipt's signature</td><td>CAUGHT</td></tr>
     </table>
     <p class="caption">The eighth was disclosed for months as structural and unfixable, because a hash chain lets whoever holds it run every computation the verifier can. It closed by signing each receipt with a key the holder does not have. Signing then opened the two below it, and both are closed.</p>
   </section>
 
   <section>
-    <h2 class="sec">What it will not do for you</h2>
+    <h2 class="sec">What it will not do</h2>
     <ul class="rows">
-      <li><b>It does not protect you from yourself</b>
-        <span>Receipts are signed, so a customer, an auditor or anyone else holding the file cannot forge one. Whoever holds the signing key still can. That is what a signature means, and it turns "could this have been faked" into "who had the key", which your own access records can answer.</span></li>
+      <li><b>It does not protect an organization from its own key holders</b>
+        <span>Receipts are signed, so the customer, the auditor and opposing counsel cannot forge one. The security team holding the signing key still can. That is what a signature means, and it turns "could this have been faked" into "who held the key on 14 March", which access records already answer.</span></li>
       <li><b>It is not an agent framework and does not replace one</b>
-        <span>Keep whatever you build agents with. This sits underneath and rules on the actions they take.</span></li>
+        <span>It sits underneath whatever framework the agents are built with, and rules on the actions they take.</span></li>
       <li><b>Receipt hashes do not survive a move between machines</b>
-        <span>Runs are deterministic and reproduce identical hashes at a fixed path. Move the folder and the paths inside the receipts change, so the hashes change with them. Named in the technical brief rather than discovered by you.</span></li>
+        <span>Runs are deterministic and reproduce identical hashes at a fixed path. Move the folder and the paths inside the receipts change, so the hashes change with them. Named in the technical brief rather than discovered during evaluation.</span></li>
     </ul>
   </section>
 
   <section>
-    <h2 class="sec">Two reasons you might walk away</h2>
-    <div class="disclose">
-      <p><b>We are the only ones who have run it.</b> No paying customer, no production install, no third party has touched it. You would find that out in your first technical call. Better you have it now.</p>
-      <p><b>There is no patent and there will not be one.</b> The work was checked against prior art and a filing was judged not worth making, and the reasoning is written down rather than left as a silence. What transfers is the copyright, the trade secrets and the contract.</p>
-    </div>
-    <p class="muted" style="margin-top:1.8rem">46 of 46 tests pass from a cold extraction on Python 3.12. Standard library only. No dependencies, no network, no account, no GPU. The internal file manifest is generated from the folder and refuses when the two disagree, because a hand-typed count is what went wrong twice.</p>
+    <h2 class="sec">What it costs to run</h2>
+    <p class="muted">46 of 46 tests pass from a cold extraction on Python 3.12. Standard library only. No dependencies, no network, no account, no GPU, nothing to host. The internal file manifest is generated from the folder and refuses when the two disagree, because a hand-typed count is what went wrong twice.</p>
   </section>
 
   <div class="ask">
-    <h2 class="sec">What you would be buying</h2>
-    <p>Sold outright or licensed. You get the source, the hashes, the provenance record and every defect ever found in it, including the ones still open. Evaluation copies are confidential and grant no patent license, because there is no patent to grant.</p>
+    <h2 class="sec">What transfers</h2>
+    <p>Sold outright or licensed. The transfer includes the source, the hashes, the provenance record and every defect ever found in it, including the ones still open. Evaluation copies are confidential.</p>
     <a class="mailto" href="mailto:hello@abernate.com?subject=ABERNATE">hello@abernate.com</a>
   </div>
 
