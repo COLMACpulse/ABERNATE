@@ -95,6 +95,7 @@
   ul.rows li{padding:1.35rem 0;border-top:1px solid var(--line)}
   ul.rows li:first-child{border-top:none;padding-top:0}
   ul.rows b{display:block;font-weight:700;font-size:1.05rem;margin-bottom:.35rem}
+  ul.rows b.hl{color:var(--hold)}
   ul.rows span{color:var(--muted);font-size:.98rem}
 
   table.forge{border-collapse:collapse;margin:2rem 0 0;width:100%;max-width:var(--measure);
@@ -237,24 +238,12 @@
     <ul class="rows">
       <li><b>It refuses on the weakest link, never the average</b>
         <span>Scoring systems let a strong result cover a bad one. Here a single failed condition stops the action and the output names which one. There is no total high enough to pass a refusal.</span></li>
-      <li><b>It ships the record of its own defeats</b>
-        <span>Ten forgeries were run against its evidence chain and all ten are caught. Each is a passing test, so none can be quietly dropped. They are ten attacks this team thought of. An attack nobody here thought of is not in that number.</span></li>
+      <li><b class="hl">It ships the record of its own defeats</b>
+        <span>Ten forgeries were run against its evidence chain and all ten are caught. One of them was disclosed for months as structurally unfixable, and is now closed. Each is a passing test, so none can be quietly dropped. They are ten attacks this team thought of; an attack nobody here thought of is not in that number. <b>The list, the method, and the record of which ones got through first, ship with the packet.</b></span></li>
       <li><b>Three earlier versions had a flagship claim measured false</b>
         <span>Each was found by attacking the claim rather than restating it, repaired, and proven by putting the defect back and watching the test fail. Those records ship with the package instead of being cleaned out of it.</span></li>
     </ul>
-    <table class="forge">
-      <tr><td>rewrite one receipt's status</td><td>CAUGHT</td></tr>
-      <tr><td>reverse the whole ledger</td><td>CAUGHT</td></tr>
-      <tr><td>delete a receipt from the middle</td><td>CAUGHT</td></tr>
-      <tr><td>swap two adjacent receipts</td><td>CAUGHT</td></tr>
-      <tr><td>remove the head receipt</td><td>CAUGHT</td></tr>
-      <tr><td>drop the last receipt</td><td>CAUGHT</td></tr>
-      <tr><td>empty ledger</td><td>CAUGHT</td></tr>
-      <tr class="was"><td>tamper, then recompute the whole chain</td><td>WAS UNFIXABLE</td></tr>
-      <tr><td>re-sign a forged ledger with a different key</td><td>CAUGHT</td></tr>
-      <tr><td>strip one receipt's signature</td><td>CAUGHT</td></tr>
-    </table>
-    <p class="caption">The eighth was disclosed for months as structural and unfixable, because a hash chain lets whoever holds it run every computation the verifier can. It closed by signing each receipt with a key the holder does not have. Signing then opened the two below it, and both are closed.</p>
+    
   </section>
 
   <section>
@@ -262,6 +251,8 @@
     <ul class="rows">
       <li><b>It does not protect an organization from its own key holders</b>
         <span>Receipts are signed, so the customer, the auditor and opposing counsel cannot forge one. The security team holding the signing key still can. That is what a signature means, and it turns "could this have been faked" into "who held the key on 14 March", which access records already answer.</span></li>
+      <li><b>It does not prove the decision was right</b>
+        <span>It proves the action followed the authorities that governed it: which policy allowed it, under what capability, and who cleared it. Whether holding that document was legally correct is a judgement a lawyer makes, and no machine on this page makes it. Anyone who tells a court otherwise will be taken apart on it.</span></li>
       <li><b>It is not an agent framework and does not replace one</b>
         <span>It sits underneath whatever framework the agents are built with, and rules on the actions they take.</span></li>
       <li><b>Receipt hashes do not survive a move between machines</b>
@@ -276,7 +267,7 @@
 
   <div class="ask">
     <h2 class="sec">What transfers</h2>
-    <p>Sold outright or licensed. The transfer includes the source, the hashes, the provenance record and every defect ever found in it, including the ones still open. Evaluation copies are confidential.</p>
+    <p>Sold outright or licensed. The transfer includes the source, the hashes, the provenance record, the full adversarial test corpus and every defect ever found in it, including the ones still open. Evaluation copies are confidential.</p>
     <a class="mailto" href="mailto:hello@abernate.com?subject=ABERNATE">hello@abernate.com</a>
   </div>
 
