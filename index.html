@@ -310,8 +310,8 @@
       <li><b>It refuses by construction, not by threshold</b>
         <span>A worker with five strong governance properties and one near-dead one does not average out to acceptable. It is refused, and the failing property is named.</span></li>
       <li><b>It ships the record of its own defeats</b>
-        <span>Eight forgeries were run against its evidence chain. Five were caught outright, two more were missed and then fixed, and one is structural. That last one is stated rather than buried, and asserted as a passing test so it cannot be quietly dropped. All eight were re-run against the shipped verifier before this page was published.</span></li>
-      <li><b>Two prior versions had their flagship claim measured false</b>
+        <span>Ten forgeries were run against its evidence chain and all ten are caught. Two were missed in v9.1 and fixed. One was <b>structural</b>, disclosed for months as unfixable for a hash chain, because the holder can run every computation the verifier can. It was closed by signing each receipt with a key the holder does not have. Signing then opened two new attacks and both are closed. Every one is asserted as a passing test, so none can be quietly dropped. All ten were re-run against the shipped verifier before this page was published. They are ten attacks we thought of; an attack nobody here thought of is not in that number.</span></li>
+      <li><b>Three prior versions had a flagship claim measured false</b>
         <span>Both were repaired and both repairs were reversion-proven. Those records ship with the package rather than being cleaned out of it.</span></li>
     </ul>
     <table class="forge">
@@ -322,7 +322,9 @@
       <tr><td>remove the head receipt</td><td>CAUGHT</td></tr>
       <tr><td>drop the last receipt</td><td>CAUGHT, missed in v9.1</td></tr>
       <tr><td>empty ledger</td><td>CAUGHT, missed in v9.1</td></tr>
-      <tr><td>tamper then recompute the chain</td><td>UNDETECTED, structural</td></tr>
+      <tr><td>tamper then recompute the chain</td><td>CAUGHT, was structural</td></tr>
+      <tr><td>re-sign a forged ledger with the forger's own key</td><td>CAUGHT by key pinning</td></tr>
+      <tr><td>strip one receipt's signature</td><td>CAUGHT, part-signed is broken</td></tr>
     </table>
   </section>
 
@@ -330,7 +332,7 @@
     <h2>What it is not</h2>
     <ul class="rows">
       <li><b>Not tamper-proof</b>
-        <span>It is tamper-evident against a party who does not hold the ledger. It is not evidence against whoever does hold it. Closing that gap needs a signature or an external anchor, which is the obvious first joint project.</span></li>
+        <span>Receipts are signed, so a recipient or anyone else holding the ledger cannot forge one. It is not evidence against whoever holds the <b>signing key</b>. That is not a gap to engineer away, it is what a signature means, and it moves the question from "can this be forged" to "who held the key", which an organization can answer.</span></li>
       <li><b>Not an agent framework, and not a competitor to one</b>
         <span>It is the layer that decides whether an action is permitted, and what record exists afterwards.</span></li>
       <li><b>Not portable across machines, yet</b>
@@ -344,7 +346,7 @@
       <p><b>Nobody has run it but us.</b> No production deployment. No external user. We would rather you hear that here than find it.</p>
       <p><b>There is no patent and there will not be one.</b> The work was assessed against prior art and a filing was judged not warranted. The reasoning was written down rather than left as a gap. This is a copyright, trade-secret and contract asset.</p>
     </div>
-    <p class="muted" style="margin-top:1.6rem">44 of 44 tests pass cold on Python 3.12, standard library only, no network, no dependencies, offline. The internal manifest is generated from the tree and refuses when the two disagree, because a hand-typed count is what went wrong twice.</p>
+    <p class="muted" style="margin-top:1.6rem">46 of 46 tests pass cold on Python 3.12, standard library only, no network, no dependencies, offline. The internal manifest is generated from the tree and refuses when the two disagree, because a hand-typed count is what went wrong twice.</p>
   </section>
 
   <div class="contact">
