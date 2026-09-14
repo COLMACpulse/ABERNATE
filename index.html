@@ -52,6 +52,25 @@
   }
   .kick{margin:1.5rem auto 0;max-width:44ch;color:var(--muted);font-size:clamp(1.02rem,2.3vw,1.15rem)}
 
+
+  .stats{
+    margin:3rem 0 0;display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(11rem,1fr));
+    border:1px solid var(--line);
+  }
+  .stats div{padding:1.4rem 1.2rem;border-right:1px solid var(--line);text-align:left}
+  .stats div:last-child{border-right:none}
+  .stats b{
+    display:block;font-size:clamp(1.45rem,3.2vw,2rem);font-weight:800;
+    letter-spacing:-.03em;margin-bottom:.45rem;white-space:nowrap;
+  }
+  .stats span{color:var(--muted);font-size:.88rem;line-height:1.5}
+  .statsrc{font-size:.82rem;margin-top:1rem;text-align:left}
+  @media (max-width:640px){
+    .stats div{border-right:none;border-bottom:1px solid var(--line)}
+    .stats div:last-child{border-bottom:none}
+  }
+
   .receipt{margin:3.4rem 0 0;border:1px solid var(--line);background:var(--panel)}
   .receipt-head{
     padding:.85rem 1.2rem;border-bottom:1px solid var(--line);
@@ -168,15 +187,26 @@
   <header><img src="lockup.png" alt="ABERNATE"></header>
 
   <div class="hero">
-    <h1>The AI feature works. The customer will not turn it on.</h1>
-    <p class="kick"><b>ABERNATE is a release gate for automated work.</b> The feature clears the demo, then it dies in the customer's security and legal review. Not because the model is wrong, but because nobody on their side can answer for what it did. This is the part that gets it through.</p>
+    <h1>Security controls which AI tools exist. Nothing controls what they do.</h1>
+    <p class="kick"><b>ABERNATE is a release gate for automated work.</b> Reviews approve the model, the vendor and the data access. Then the agent runs, calls a tool, and nothing stands between the call and the consequence. That gap is why agents get blocked at review, and why four in five ship with their hands tied instead.</p>
+
+  <div class="stats">
+    <div><b>82.9%</b><span>of organisations have had AI projects delayed before production by security or compliance review</span></div>
+    <div><b>81.6%</b><span>have deployed AI in a reduced form because of security concerns, limiting agent autonomy or data access</span></div>
+    <div><b>5.9 months</b><span>average delay for AI agent deployments among the 86% reporting one</span></div>
+    <div><b>88%</b><span>of enterprise agent pilots did not reach production in the reported window</span></div>
+  </div>
+  <p class="caption statsrc">EMA, April 2026, 152 IT and security leaders. AvePoint State of AI 2026. State of AI Agents 2026. None of these are our numbers and none of them are about this product.</p>
+
   </div>
 
   <section>
-    <h2 class="sec">The review always lands on the same question</h2>
-    <p>An agent classifies a document as privileged and holds it. Months later opposing counsel asks how that call was made. The vendor can produce a log showing the classification happened and a score attached to it. Neither establishes which policy permitted the hold, what the agent was allowed to reach, or whether a person on the client side ever signed for it.</p>
-    <p>That gap is why security review takes two quarters. It is not scepticism about the model. It is that the reviewer is the one whose name ends up on the answer, and right now the answer is an assurance from a vendor.</p>
-    <p>Most governance tooling settles this at deploy time, in a configuration review signed off once. ABERNATE settles it at the action, every time, and leaves an artifact the reviewer can check without calling the vendor.</p>
+    <h2 class="sec">The model layer is governed. The execution layer is not.</h2>
+    <p>Security review does real work. It decides which AI tools are allowed, which vendors clear procurement, and what data those tools can see. All of that is about what the agent <b>is</b>.</p>
+    <p class="muted">The gap that follows is not our observation. Four independent groups have described the same missing layer in 2026 alone, under four different names, and at least one has argued the whole category is aimed at the wrong place. Sources in the technical packet.</p>
+    <p>Then the agent runs. It calls an API, writes to a database, triggers a workflow, holds a document. Nothing sits between that call and the consequence, and more than half of agents in production run with no oversight or logging at all. A third of organisations say they could not immediately stop a rogue agent.</p>
+    <p>A reviewer facing that has two moves. Refuse the project, or approve it with the agent's hands tied. Four in five choose the second and ship a diminished version of the thing they paid for.</p>
+    <p><b>ABERNATE governs the third thing. Not what the agent is, not what it saw, but what it is permitted to do at the moment it acts.</b></p>
   </section>
 
   <div class="receipt">
@@ -210,13 +240,13 @@
 
   <div class="money">
   <div class="wrap">
-    <h2>The deal does not die on price. It dies in security review.</h2>
-    <p>Engineering built the feature. Sales sold it. Then it sits in a customer's approval queue for two quarters and closes at a discount or not at all, because the answer to one question is a log file and a confidence score.</p>
-    <p>That question is <b>"how did it decide, and who authorized it?"</b> A signed receipt per action, naming the policy that allowed it and the human who cleared it, is an answer their counsel can take to a board. It moves the objection out of the sales cycle.</p>
-    <p class="small">Three other lines show up in the business case and none are ours to quantify. <b>Regulatory:</b> EU AI Act exposure runs to &euro;35 million or 7% of turnover, and Finland has been enforcing since January 2026, which is a deadline the buyer already has. <b>Audit:</b> evidence assembled by people at consulting rates gets produced per action instead, at no cost. <b>Liability:</b> proving what was authorized decides whether the vendor or the customer eats a loss, which is a contract term long before it is a lawsuit.</p>
+    <h2>The choice today is late or crippled.</h2>
+    <p>An agent that clears review with its autonomy cut is not a win, it is the budget spent and the capability withheld. An agent still in review at month six is the same money with nothing to show at all.</p>
+    <p>Both happen for one reason: the reviewer has no control to point at, so the only levers left are <b>delay</b> and <b>restrict</b>. Give them a gate that refuses on the action itself, and a signed record of every refusal and every clearance, and the conversation changes from how much to take away to what evidence gets produced.</p>
+    <p class="small">Three lines follow from that and none are ours to quantify. <b>Regulatory:</b> EU AI Act exposure runs to &euro;35 million or 7% of turnover, and Finland has been enforcing since January 2026. <b>Audit:</b> evidence assembled by people at consulting rates gets produced per action instead, at no cost. <b>Liability:</b> proving what was authorized decides whether the vendor or the customer eats a loss, which is a contract term long before it is a lawsuit.</p>
     <p style="margin-top:1.6rem"><b>No customer has measured a dollar of any of this, so no dollar figure appears on this page.</b></p>
-      <p style="margin-top:2.2rem"><a href="mailto:hello@abernate.com?subject=ABERNATE" style="font-family:'JetBrains Mono',monospace;font-weight:500">hello@abernate.com</a> &nbsp;·&nbsp; <span class="small">the technical packet, on request</span></p>
-</div>
+    <p style="margin-top:2.2rem"><a href="mailto:hello@abernate.com?subject=ABERNATE" style="font-family:'JetBrains Mono',monospace;font-weight:500">hello@abernate.com</a> &nbsp;&middot;&nbsp; <span class="small">the technical packet, on request</span></p>
+  </div>
 </div>
 
 </div>
@@ -252,7 +282,7 @@
 
   <section>
     <h2 class="sec">Reproduce it without talking to anyone</h2>
-    <p>Every number below came from one run against a public corpus that anyone can download. Not a demo folder, not a benchmark we built.</p>
+    <p>The figures below came from one run against a public corpus that anyone can download. Not a demo folder, not a benchmark we built.</p>
     <div class="gate">
       <div class="row"><span class="n">IN</span><span>The CPython 3.12.0 source release, straight off GitHub.<br><code style="font-size:.74rem;color:var(--muted)">sha256 ddfaf383c97f393a7768943630ea01e6c3cfb9af4fbc02655a37a2f3680013d6</code></span></div>
       <div class="row"><span class="n">01</span><span><b>4,579 files catalogued and hashed.</b> 100,613,159 bytes. Twelve receipts picked at random and re-hashed off disk: twelve of twelve match what the receipt says.</span></div>
@@ -261,7 +291,7 @@
       <div class="row"><span class="n">04</span><span><b>Ten forgeries against the resulting 4.7 MB signed ledger. All ten caught.</b></span></div>
       <div class="all">AND IT DID NOT SHIP &nbsp;·&nbsp; every check passed and released stayed false, because no human recorded a decision</div>
     </div>
-    <p class="caption">The check ships in the package. <code>reproduce.py</code> downloads that tarball, verifies the sha256, grants the corpus through a contract it prints and then revokes, runs the sweep, and compares every figure above against what came out. Exit 0 means the claim held on that machine. It takes about nine seconds.</p>
+    <p class="caption">The check ships in the package. <code>reproduce.py</code> downloads that tarball, verifies the sha256, grants the corpus through a contract it prints and then revokes, runs the sweep, and compares the five figures above against what it measured. Exit 0 means those five held on that machine. It takes about nine seconds.</p>
     <p class="muted" style="margin-top:2rem">One more thing happened on the way in, and it was not staged. The first attempt was refused before a single file was read: <code style="font-size:.78rem">read path outside authority</code>. No worker contract declared that corpus, so nothing touched it until one did. That is the gate working on data it had never seen.</p>
   </section>
 
@@ -271,9 +301,11 @@
       <li><b>It does not protect an organization from its own key holders</b>
         <span>Receipts are signed, so the customer, the auditor and opposing counsel cannot forge one. The security team holding the signing key still can. That is what a signature means, and it turns "could this have been faked" into "who held the key on 14 March", which access records already answer.</span></li>
       <li><b>It does not prove the decision was right</b>
-        <span>It proves the action followed the authorities that governed it: which policy allowed it, under what capability, and who cleared it. Whether holding that document was legally correct is a judgement a lawyer makes, and no machine on this page makes it. Anyone who tells a court otherwise will be taken apart on it.</span></li>
+        <span>It records which authority permitted the action, under what capability, and who cleared it. That record is checkable. Whether the action was the right one is not in it. Whether holding that document was legally correct is a judgement a lawyer makes, and no machine on this page makes it. Anyone who tells a court otherwise will be taken apart on it.</span></li>
       <li><b>It has been measured at thousands of files, not millions</b>
         <span>The published run covers 4,579 files and 100 MB of one public source release. Throughput at enterprise document volume has not been measured, and no claim is made about it. The corpus is code, not email or PDFs, so the file handling is proven and the document-type coverage is not.</span></li>
+      <li><b>It governs the action, not the reasoning that led to it</b>
+        <span>There is a documented argument that this is the wrong layer: that governance has crowded onto execution risk while the real blind spot sits upstream, in how a model framed the options before any action was proposed. That critique is correct about the limit. ABERNATE rules on what an agent is permitted to do. It has nothing to say about why the agent wanted to do it, and a related objection holds that intercepting after reasoning completes is weaker than governing the reasoning itself. Both are worth reading before buying.</span></li>
       <li><b>It is not an agent framework and does not replace one</b>
         <span>It sits underneath whatever framework the agents are built with, and rules on the actions they take.</span></li>
       
