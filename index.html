@@ -271,11 +271,11 @@
       <div class="row"><span class="n">IN</span><span>The CPython 3.12.0 source release, straight off GitHub.<br><code style="font-size:.74rem;color:var(--muted)">sha256 ddfaf383c97f393a7768943630ea01e6c3cfb9af4fbc02655a37a2f3680013d6</code></span></div>
       <div class="row"><span class="n">01</span><span><b>4,579 files catalogued and hashed.</b> 100,613,159 bytes. Twelve receipts picked at random and re-hashed off disk: twelve of twelve match what the receipt says.</span></div>
       <div class="row"><span class="n">02</span><span><b>8 archives opened, 19 entries read.</b> 3,014 patterns traced across more than one source.</span></div>
-      <div class="row"><span class="n">03</span><span><b>Two independent runs, identical final hash.</b> <code style="font-size:.74rem;color:var(--muted)">bf209f329dec8ad0f59c47c9feb11e735f4a3982430b7314e475d7f4659af795</code></span></div>
+      <div class="row"><span class="n">03</span><span><b>Two independent runs, identical final hash.</b> Deterministic on one machine. The hash embeds absolute paths, so it will differ on another and is not something to compare across machines. The figures are.</span></div>
       <div class="row"><span class="n">04</span><span><b>Ten forgeries against the resulting 4.7 MB signed ledger. All ten caught.</b></span></div>
       <div class="all">AND IT DID NOT SHIP &nbsp;·&nbsp; every check passed and released stayed false, because no human recorded a decision</div>
     </div>
-    <p class="caption">Download the same tarball, verify that sha256, run the same mission. The final receipt hash is either that string or the claim is false. Nothing here requires taking anyone's word.</p>
+    <p class="caption">The check ships in the package. <code>reproduce.py</code> downloads that tarball, verifies the sha256, grants the corpus through a contract it prints and then revokes, runs the sweep, and compares every figure above against what came out. Exit 0 means the claim held on that machine. It takes about nine seconds.</p>
     <p class="muted" style="margin-top:2rem">One more thing happened on the way in, and it was not staged. The first attempt was refused before a single file was read: <code style="font-size:.78rem">read path outside authority</code>. No worker contract declared that corpus, so nothing touched it until one did. That is the gate working on data it had never seen.</p>
   </section>
 
