@@ -3,316 +3,244 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>ABERNATE · a release gate for automated work</title>
-<meta name="description" content="Automated workers take real actions. ABERNATE decides whether each action is permitted, at run time, and leaves a verifiable record of who allowed it.">
+<title>ABERNATE · permission to ship your agents</title>
+<meta name="description" content="Your agents are built and nobody will sign off on them. ABERNATE decides whether each action is permitted at the moment it happens, and writes a signed receipt your approver can verify without trusting you.">
 <meta property="og:title" content="ABERNATE">
-<meta property="og:description" content="A release gate for automated work. The authority decides, before the work ships.">
+<meta property="og:description" content="Your agents are built. Nobody will sign off on them. This is the part that gets them approved.">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://abernate.com/">
 <meta property="og:image" content="https://abernate.com/lockup.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
 <link rel="icon" href="favicon.png" type="image/png">
 <style>
   :root{
-    --ground:#0F1215;
-    --panel:#171C21;
-    --steel:#E3E7EB;
-    --muted:#8B949E;
-    --line:#252C33;
-    --measure:36rem;
+    --ground:#0C0F12;
+    --panel:#151A1F;
+    --raise:#1A2128;
+    --steel:#E8ECEF;
+    --muted:#8A949E;
+    --line:#242C34;
+    /* THE ONLY COLOUR ON THIS PAGE. It appears four times and every one is the
+       product refusing. Scarcity is what makes it read as authority rather
+       than decoration. */
+    --hold:#E0483A;
+    --measure:38rem;
   }
-
   *{box-sizing:border-box}
   html{-webkit-text-size-adjust:100%}
-
   body{
-    margin:0;
-    background:var(--ground);
-    color:var(--steel);
-    font-family:Archivo,system-ui,sans-serif;
-    font-size:17px;
-    line-height:1.62;
+    margin:0;background:var(--ground);color:var(--steel);
+    font-family:Archivo,system-ui,sans-serif;font-size:17.5px;line-height:1.6;
     -webkit-font-smoothing:antialiased;
   }
-
-  .wrap{max-width:54rem;margin:0 auto;padding:0 1.5rem 6rem}
-
-  a{color:var(--steel);text-decoration:underline;text-underline-offset:.2em;text-decoration-thickness:1px}
-  a:hover{text-decoration-thickness:2px}
-  a:focus-visible{outline:2px solid var(--steel);outline-offset:3px}
-
+  .wrap{max-width:60rem;margin:0 auto;padding:0 1.5rem}
+  a{color:var(--steel);text-decoration:underline;text-underline-offset:.2em}
+  a:focus-visible{outline:2px solid var(--hold);outline-offset:3px}
   code,pre,.mono{font-family:"JetBrains Mono",ui-monospace,monospace}
 
-  /* ---------- masthead: the mark is symmetrical, so it is centerd ---------- */
-  header{padding:4.5rem 0 0;text-align:center}
-  header img{width:clamp(8rem,22vw,11rem);height:auto;display:block;margin:0 auto}
+  header{padding:4rem 0 0;text-align:center}
+  header img{width:clamp(7rem,17vw,9.5rem);height:auto;display:block;margin:0 auto}
 
-  .creed{
-    margin:1.6rem 0 0;
-    font-size:.8rem;
-    letter-spacing:.34em;
-    color:var(--muted);
-    font-weight:500;
+  .hero{padding:3.2rem 0 0;text-align:center}
+  h1{
+    margin:0 auto;font-size:clamp(2.1rem,6.4vw,3.9rem);line-height:1.04;
+    font-weight:800;letter-spacing:-.035em;max-width:16ch;
   }
+  .kick{margin:1.5rem auto 0;max-width:44ch;color:var(--muted);font-size:clamp(1.02rem,2.3vw,1.15rem)}
 
-  /* ---------- lede ---------- */
-  .lede{
-    margin:3.4rem auto 0;
-    max-width:22ch;
-    text-align:center;
-    font-size:clamp(1.6rem,4.6vw,2.35rem);
-    line-height:1.22;
-    font-weight:600;
-    letter-spacing:-.018em;
+  .receipt{margin:3.4rem 0 0;border:1px solid var(--line);background:var(--panel)}
+  .receipt-head{
+    padding:.85rem 1.2rem;border-bottom:1px solid var(--line);
+    font-family:"JetBrains Mono",monospace;font-size:.72rem;
+    letter-spacing:.16em;color:var(--muted);
   }
+  .receipt pre{margin:0;padding:1.3rem 1.2rem;overflow-x:auto;font-size:.82rem;line-height:1.75}
+  .k{color:#6F7C88}
+  .ok{color:var(--steel);font-weight:700}
+  .no{color:var(--hold);font-weight:700}
 
-  .sub-lede{
-    margin:1.4rem auto 0;
-    max-width:46ch;
-    text-align:center;
-    color:var(--muted);
-    font-size:1.02rem;
-  }
+  .decode{display:grid;grid-template-columns:repeat(auto-fit,minmax(13rem,1fr));border-top:1px solid var(--line)}
+  .decode div{padding:1rem 1.2rem;border-right:1px solid var(--line)}
+  .decode div:last-child{border-right:none}
+  .decode b{display:block;font-family:"JetBrains Mono",monospace;font-size:.74rem;letter-spacing:.06em;margin-bottom:.3rem}
+  .decode span{color:var(--muted);font-size:.92rem;line-height:1.5}
+  .decode .h b{color:var(--hold)}
 
-  /* ---------- the artifact: a real run, verbatim ---------- */
-  .run{
-    margin:3rem 0 0;
-    border:1px solid var(--line);
-    background:var(--panel);
-    font-family:"JetBrains Mono",monospace;
-    font-size:.84rem;
-  }
+  .caption{margin:1.3rem 0 0;color:var(--muted);font-size:.95rem;max-width:var(--measure)}
 
-  .run-head{
-    padding:.7rem 1.1rem;
-    border-bottom:1px solid var(--line);
-    color:var(--muted);
-    font-size:.74rem;
-    letter-spacing:.12em;
-  }
+  .money{margin:5.5rem 0 0;padding:4.2rem 0;background:var(--raise);
+         border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+  .money h2{margin:0;font-size:clamp(1.55rem,4.2vw,2.5rem);line-height:1.16;
+            font-weight:700;letter-spacing:-.022em;max-width:20ch}
+  .money p{margin:1.4rem 0 0;max-width:var(--measure);font-size:1.05rem}
+  .money .small{color:var(--muted);font-size:.95rem}
 
-  .run pre{margin:0;padding:1.1rem;overflow-x:auto;line-height:1.7}
-
-  .k{color:var(--muted)}
-  .hl{color:var(--steel);font-weight:700}
-  .inv{background:var(--steel);color:var(--ground);padding:.05rem .35rem;font-weight:700;white-space:pre}
-
-  .run-note{
-    margin:1.2rem 0 0;
-    max-width:var(--measure);
-    color:var(--muted);
-    font-size:.97rem;
-  }
-
-  /* ---------- sections ---------- */
-  section{margin-top:4.5rem;padding-top:2.2rem;border-top:1px solid var(--line)}
-
-  h2{font-size:1.2rem;font-weight:600;margin:0 0 1.2rem;letter-spacing:-.01em}
+  section{margin-top:5rem}
+  h2.sec{font-size:clamp(1.35rem,3.2vw,1.9rem);font-weight:700;letter-spacing:-.02em;
+         margin:0 0 1.5rem;max-width:22ch;line-height:1.18}
   p{max-width:var(--measure)}
-  .muted{color:var(--muted);font-size:.97rem}
+  .muted{color:var(--muted)}
 
-  /* the four layers are a real conjunction, so they are drawn as one ---------- */
-  .layers{
-    margin:1.6rem 0 0;
-    border:1px solid var(--line);
-    max-width:var(--measure);
-  }
-  .layer{
-    padding:.85rem 1.1rem;
-    display:grid;
-    grid-template-columns:1.6rem 1fr;
-    gap:0 .9rem;
-    font-size:.98rem;
-  }
-  .layer + .layer{border-top:1px solid var(--line)}
-  .layer span:first-child{
-    font-family:"JetBrains Mono",monospace;
-    color:var(--muted);
-    font-size:.82rem;
-    padding-top:.15rem;
-  }
-  .conj{
-    padding:.8rem 1.1rem;
-    border-top:1px solid var(--line);
-    background:var(--panel);
-    font-family:"JetBrains Mono",monospace;
-    font-size:.82rem;
-    color:var(--muted);
-  }
+  .gate{margin:2rem 0 0;max-width:var(--measure);border:1px solid var(--line)}
+  .gate .row{display:grid;grid-template-columns:2.6rem 1fr;gap:0 1rem;padding:1.05rem 1.2rem;align-items:start}
+  .gate .row + .row{border-top:1px solid var(--line)}
+  .gate .n{font-family:"JetBrains Mono",monospace;font-size:.78rem;color:var(--muted);padding-top:.22rem}
+  .gate .all{padding:1rem 1.2rem;border-top:1px solid var(--hold);
+             background:rgba(224,72,58,.07);font-family:"JetBrains Mono",monospace;
+             font-size:.8rem;color:var(--hold);line-height:1.6}
 
-  ul.rows{margin:0;padding:0;list-style:none}
-  ul.rows li{padding:1.05rem 0;border-top:1px solid var(--line);max-width:var(--measure)}
+  ul.rows{margin:0;padding:0;list-style:none;max-width:var(--measure)}
+  ul.rows li{padding:1.35rem 0;border-top:1px solid var(--line)}
   ul.rows li:first-child{border-top:none;padding-top:0}
-  ul.rows b{display:block;font-weight:600}
-  ul.rows span{color:var(--muted);font-size:.97rem}
+  ul.rows b{display:block;font-weight:700;font-size:1.05rem;margin-bottom:.35rem}
+  ul.rows span{color:var(--muted);font-size:.98rem}
 
-  table.forge{
-    border-collapse:collapse;
-    margin:1.4rem 0 0;
-    font-family:"JetBrains Mono",monospace;
-    font-size:.82rem;
-    width:100%;
-    max-width:var(--measure);
-  }
-  table.forge td{padding:.45rem .7rem;border-top:1px solid var(--line);vertical-align:top}
-  table.forge td:last-child{color:var(--muted);white-space:nowrap}
+  table.forge{border-collapse:collapse;margin:2rem 0 0;width:100%;max-width:var(--measure);
+              font-family:"JetBrains Mono",monospace;font-size:.8rem}
+  table.forge td{padding:.6rem .8rem;border-top:1px solid var(--line);vertical-align:top}
+  table.forge td:last-child{text-align:right;white-space:nowrap;color:var(--muted)}
+  table.forge tr.was td:last-child{color:var(--hold);font-weight:700}
 
-  /* ---------- the disclosure block: same weight, deliberately ---------- */
-  .disclose{border:1px solid var(--steel);padding:1.5rem 1.6rem;margin:1.6rem 0 0;max-width:var(--measure)}
+  .disclose{border:1px solid var(--steel);padding:1.8rem;margin:2rem 0 0;max-width:var(--measure)}
   .disclose p{margin:0}
-  .disclose p + p{margin-top:1rem}
+  .disclose p + p{margin-top:1.1rem}
 
-  /* ---------- contact ---------- */
-  .contact{margin-top:4.5rem;padding-top:2.2rem;border-top:2px solid var(--steel)}
-  .mailto{
-    display:inline-block;
-    font-family:"JetBrains Mono",monospace;
-    font-size:clamp(1.05rem,3.2vw,1.35rem);
-    font-weight:500;
-    margin-top:.5rem;
-  }
+  .ask{margin-top:5.5rem;padding:3.5rem 0 1rem;border-top:2px solid var(--steel)}
+  .mailto{display:inline-block;font-family:"JetBrains Mono",monospace;
+          font-size:clamp(1.1rem,3.4vw,1.5rem);font-weight:500;margin-top:.8rem}
+  footer{margin-top:4rem;padding:1.5rem 0 5rem;border-top:1px solid var(--line);
+         font-size:.82rem;color:var(--muted)}
 
-  footer{margin-top:4rem;padding-top:1.5rem;border-top:1px solid var(--line);font-size:.8rem;color:var(--muted)}
-  footer p{max-width:var(--measure)}
-
-
-  /* ---------- load sequence ---------- */
-  #splash{
-    position:fixed;inset:0;z-index:60;background:var(--ground);
-    display:flex;align-items:center;justify-content:center;
-  }
+  #splash{position:fixed;inset:0;z-index:60;background:var(--ground);display:flex;align-items:center;justify-content:center}
   #splash.gone{opacity:0;pointer-events:none;transition:opacity .55s ease .1s}
   .rig{position:relative;width:min(30rem,74vw);aspect-ratio:900/630;text-align:center}
   .lyr{position:absolute;width:auto;height:auto;opacity:0}
-  /* each layer is cropped to its own ink and placed by the inset it occupies
-     in the full mark, so the three reassemble pixel-exact */
-  #splash .arch {top:1.587%;right:27.222%;bottom:59.524%;left:27.333%}
+  #splash .arch{top:1.587%;right:27.222%;bottom:59.524%;left:27.333%}
   #splash .wingL,#splash .wingR{top:6.984%;right:.556%;bottom:45.873%;left:.778%}
-  #splash .shld {top:40.476%;right:18.889%;bottom:.635%;left:19.000%}
-  .lyr img,.lyr{max-width:100%}
+  #splash .shld{top:40.476%;right:18.889%;bottom:.635%;left:19%}
   .wingL{clip-path:inset(0 50% 0 0)}
-  .lyr{width:auto}
   .wingR{clip-path:inset(0 0 0 50%)}
-  .sname{
-    position:absolute;left:0;right:0;top:104%;margin:0;
-    font-family:Archivo,sans-serif;font-weight:600;
-    font-size:clamp(1.5rem,4.6vw,2.1rem);letter-spacing:.3em;
-    color:var(--steel);opacity:0;
-  }
-  .screed{
-    position:absolute;left:0;right:0;top:128%;margin:0;
-    font-size:.7rem;letter-spacing:.3em;color:var(--muted);opacity:0;
-  }
-
+  .sname{position:absolute;left:0;right:0;top:104%;margin:0;font-family:Archivo,sans-serif;
+         font-weight:700;font-size:clamp(1.5rem,4.6vw,2.1rem);letter-spacing:.3em;color:var(--steel);opacity:0}
+  .screed{position:absolute;left:0;right:0;top:128%;margin:0;font-size:.7rem;letter-spacing:.3em;color:var(--muted);opacity:0}
   @keyframes descend{from{opacity:0;transform:translateY(-28%) scale(.96)}to{opacity:1;transform:none}}
-  @keyframes sweepL {from{opacity:0;transform:translateX(-26%)}to{opacity:1;transform:none}}
-  @keyframes sweepR {from{opacity:0;transform:translateX(26%)}to{opacity:1;transform:none}}
-  @keyframes rise   {from{opacity:0;transform:translateY(22%) scale(.97)}to{opacity:1;transform:none}}
-  @keyframes settle {from{opacity:0;letter-spacing:.62em}to{opacity:1;letter-spacing:.3em}}
-  @keyframes fadein {to{opacity:1}}
+  @keyframes sweepL{from{opacity:0;transform:translateX(-26%)}to{opacity:1;transform:none}}
+  @keyframes sweepR{from{opacity:0;transform:translateX(26%)}to{opacity:1;transform:none}}
+  @keyframes rise{from{opacity:0;transform:translateY(22%) scale(.97)}to{opacity:1;transform:none}}
+  @keyframes settle{from{opacity:0;letter-spacing:.62em}to{opacity:1;letter-spacing:.3em}}
+  @keyframes fadein{to{opacity:1}}
+  #splash .arch{animation:descend .72s cubic-bezier(.19,1,.22,1) .10s both}
+  #splash .wingL{animation:sweepL .66s cubic-bezier(.19,1,.22,1) .52s both}
+  #splash .wingR{animation:sweepR .66s cubic-bezier(.19,1,.22,1) .52s both}
+  #splash .shld{animation:rise .70s cubic-bezier(.19,1,.22,1) .94s both}
+  #splash .sname{animation:settle .80s cubic-bezier(.19,1,.22,1) 1.34s both}
+  #splash .screed{animation:fadein .60s ease 1.74s both}
+  @media (prefers-reduced-motion:reduce){#splash{display:none}}
 
-  #splash .arch  {animation:descend .72s cubic-bezier(.19,1,.22,1)  .10s both}
-  #splash .wingL {animation:sweepL  .66s cubic-bezier(.19,1,.22,1)  .52s both}
-  #splash .wingR {animation:sweepR  .66s cubic-bezier(.19,1,.22,1)  .52s both}
-  #splash .shld  {animation:rise    .70s cubic-bezier(.19,1,.22,1)  .94s both}
-  #splash .sname {animation:settle  .80s cubic-bezier(.19,1,.22,1) 1.34s both}
-  #splash .screed{animation:fadein  .60s ease                      1.74s both}
-
-  @media (prefers-reduced-motion:reduce){
-    #splash{display:none}
-  }
-
-  @media (prefers-reduced-motion:no-preference){
-    .inv{animation:cut .45s cubic-bezier(.2,.8,.2,1) .8s both}
-    @keyframes cut{from{opacity:0}to{opacity:1}}
-  }
-
-  @media (max-width:560px){
-    body{font-size:16px}
-    .run pre{font-size:.76rem}
-    .creed{letter-spacing:.2em;font-size:.72rem}
+  @media (max-width:640px){
+    body{font-size:16.5px}
+    .receipt pre{font-size:.72rem}
+    .decode div{border-right:none;border-bottom:1px solid var(--line)}
+    .decode div:last-child{border-bottom:none}
   }
 </style>
 </head>
 <body>
-<!-- Load sequence. The REAL mark, split into three layers that assemble.
-       Not a redraw: p_arch / p_wing / p_shield are slices of mark.png and add
-       back to it pixel for pixel. Shown once per session, skipped entirely for
-       anyone who asked for reduced motion. -->
-  <div id="splash" aria-hidden="true">
-    <div class="rig">
-      <img class="lyr wingL" src="p_wing.png" alt="" style="width:98.67%">
-      <img class="lyr wingR" src="p_wing.png" alt="" style="width:98.67%">
-      <img class="lyr arch"  src="p_arch.png" alt="" style="width:45.44%">
-      <img class="lyr shld"  src="p_shield.png" alt="" style="width:62.11%">
-      <p class="sname">ABERNATE</p>
-      <p class="screed">GOVERN &nbsp;|&nbsp; CONTROL &nbsp;|&nbsp; PROTECT</p>
-    </div>
+
+<div id="splash" aria-hidden="true">
+  <div class="rig">
+    <img class="lyr wingL" src="p_wing.png" alt="" style="width:98.67%">
+    <img class="lyr wingR" src="p_wing.png" alt="" style="width:98.67%">
+    <img class="lyr arch"  src="p_arch.png" alt="" style="width:45.44%">
+    <img class="lyr shld"  src="p_shield.png" alt="" style="width:62.11%">
+    <p class="sname">ABERNATE</p>
+    <p class="screed">GOVERN &nbsp;|&nbsp; CONTROL &nbsp;|&nbsp; PROTECT</p>
   </div>
+</div>
 
 <div class="wrap">
 
-  <header>
-    <img src="lockup.png" alt="ABERNATE">
-  </header>
+  <header><img src="lockup.png" alt="ABERNATE"></header>
 
-  <p class="lede">A release gate for automated work.</p>
-  <p class="sub-lede">Automated workers are taking real actions. ABERNATE decides whether each action is permitted, at run time, and leaves a record that settles who allowed it.</p>
-
-  <div class="run" role="figure" aria-label="A real run: the mission passed and did not release">
-    <div class="run-head">A REAL RUN, VERBATIM. THE SHIPPED SAMPLE MISSION, RELEASE REQUESTED.</div>
-<pre>{
-  <span class="k">"mission_id"</span>: "recover-sample-001",
-  <span class="k">"operational_status"</span>: <span class="hl">"PASS"</span>,
-  <span class="k">"steps_planned"</span>: 4,
-  <span class="k">"steps_executed"</span>: 4,
-  <span class="k">"receipt_chain"</span>: <span class="hl">"VALID"</span>,
-  <span class="k">"release_required"</span>: true,
-  <span class="k">"released"</span>: <span class="inv">false</span>,
-  <span class="k">"squad_leader"</span>: <span class="inv">"BLOCKED: no SQUAD LEADER clearance for mission recover-sample-001: run the go/no-go board and record a GO before release"</span>,
-  <span class="k">"final_receipt_hash"</span>: "ec18a705d090f8d9c5b5ece7...",
-  <span class="k">"metrics"</span>: {
-    <span class="k">"completion_ratio"</span>: 1.0,
-    <span class="k">"successful_ratio"</span>: 1.0,
-    <span class="k">"authority_coverage"</span>: 1.0,
-    <span class="k">"receipt_integrity"</span>: 1.0
-  }
-}</pre>
+  <div class="hero">
+    <h1>Your agents are built. Nobody will sign off on them.</h1>
+    <p class="kick">Security will not clear it. Legal will not clear it. So a finished system sits in staging for two quarters while the people who built it move on. This is the part that gets it approved.</p>
   </div>
 
-  <p class="run-note">The work succeeded. Every step ran, the chain verified, every metric came back at 1.0. It still did not ship, because no human had recorded a decision. That is the product.</p>
-
-  <section>
-    <h2>The problem this answers</h2>
-    <p>The failure organizations are insuring against is a single one: the system did something nobody authorized, and afterwards there is no record that settles what happened or who allowed it.</p>
-    <p>Most tooling answers that at deploy time, with configuration and review. ABERNATE answers it at run time, on every action.</p>
-  </section>
-
-  <section>
-    <h2>Authority is an intersection, not a setting</h2>
-    <p>Four layers decide whether an action may happen. No layer can grant what a higher layer forbids.</p>
-    <div class="layers">
-      <div class="layer"><span>1</span><span>What the worker is capable of</span></div>
-      <div class="layer"><span>2</span><span>What the command permits</span></div>
-      <div class="layer"><span>3</span><span>What standing policy allows</span></div>
-      <div class="layer"><span>4</span><span>What the mission actually asked for</span></div>
-      <div class="conj">execution is conjunctive &nbsp;·&nbsp; one failed condition stops the action rather than being averaged away</div>
+  <div class="receipt">
+    <div class="receipt-head">A REAL RUN. RELEASE WAS REQUESTED.</div>
+<pre>{
+  <span class="k">"mission_id"</span>: "legal-hold-sweep-4471",
+  <span class="k">"purpose"</span>: "Sweep a custodian folder under legal hold: catalogue
+              every file, hash each one for chain of custody, look
+              inside archives, and flag material appearing across
+              more than one source. No network access.",
+  <span class="k">"operational_status"</span>: <span class="ok">"PASS"</span>,
+  <span class="k">"steps_executed"</span>: 4,
+  <span class="k">"receipt_chain"</span>: <span class="ok">"VALID"</span>,
+  <span class="k">"release_required"</span>: true,
+  <span class="k">"released"</span>: <span class="no">false</span>,
+  <span class="k">"squad_leader"</span>: <span class="no">"BLOCKED: no clearance recorded for
+                    legal-hold-sweep-4471. Run the go/no-go
+                    board and record a GO before release."</span>,
+  <span class="k">"final_receipt_hash"</span>: "fc1244d6c1c8ff789c951f8be42b2627...",
+  <span class="k">"metrics"</span>: { <span class="k">"completion"</span>: 1.0, <span class="k">"success"</span>: 1.0,
+              <span class="k">"authority_coverage"</span>: 1.0, <span class="k">"receipt_integrity"</span>: 1.0 }
+}</pre>
+    <div class="decode">
+      <div><b>PASS</b><span>The job worked. Four steps ran, none errored.</span></div>
+      <div><b>VALID</b><span>Each step wrote a signed record, and they still agree with each other.</span></div>
+      <div><b>1.0 ACROSS THE BOARD</b><span>Nothing partial. Every action covered by a stated authority.</span></div>
+      <div class="h"><b>released: false</b><span>And it shipped nothing, because no person had approved it.</span></div>
     </div>
-    <p class="muted" style="margin-top:1.4rem">A human release gate sits at the end. It can only block, never grant. A policy that omits the gate is refused at load, so it cannot be disabled by being forgotten.</p>
-    <p class="muted">Every step emits a hash-chained receipt. Whoever receives that ledger can verify it with a shipped command, without our help and without trusting us.</p>
+  </div>
+  <p class="caption">Verbatim output from the sample that ships with the package. Success is not permission, and that distinction is the entire product.</p>
+
+</div>
+
+<div class="money">
+  <div class="wrap">
+    <h2>The automation you already paid for is stuck in staging.</h2>
+    <p>That is the money. Not a saving, not a projection. Work that is finished, budgeted and unshipped, waiting on somebody who will not put their name to it.</p>
+    <p>They are right to hesitate. Today the honest answer to <b>"was that action authorized?"</b> is a shrug and a log file. Give them a signed receipt per action, naming the authority that allowed it and the person who cleared it, and the approval turns from a judgement call into a document.</p>
+    <p class="small">Three other lines show up in the business case and none of them are ours to quantify. EU AI Act exposure runs to €35 million or 7% of turnover, and Finland has been enforcing since January 2026. SOC 2 and ISO evidence is assembled by people at consulting rates, and here it is produced per action at no cost. And when an agent does cause a loss, proving what was authorized is the difference between a contained incident and eating the whole thing. <b>Nobody has measured a dollar of this yet, so we are not going to print one.</b></p>
+  </div>
+</div>
+
+<div class="wrap">
+
+  <section>
+    <h2 class="sec">Nobody can answer "was that allowed?"</h2>
+    <p>An agent deletes a customer record. Three weeks later the customer asks why, and someone has to say whether that deletion was permitted. The logs show it happened. They do not show which policy allowed it, what access it ran under, or whether a person ever approved it.</p>
+    <p>Most governance tools settle this at deploy time, in a config review or an approval workflow. That decision gets made once, months before the action, against a world that has since changed.</p>
+    <p><b>ABERNATE decides at the action. Every step, every time.</b></p>
   </section>
 
   <section>
-    <h2>What is unusual about it</h2>
+    <h2 class="sec">Four things must agree, or it does not happen</h2>
+    <p>Permission is not one setting. Before an action runs, four separate questions have to answer yes.</p>
+    <div class="gate">
+      <div class="row"><span class="n">01</span><span>Can this worker do this at all? Its contract lists the actions it has and the paths it may read.</span></div>
+      <div class="row"><span class="n">02</span><span>Does the command being run permit it? A command is a narrower grant than the worker's full capability.</span></div>
+      <div class="row"><span class="n">03</span><span>Does standing policy allow it? Risk class, network access, evidence thresholds, step limits.</span></div>
+      <div class="row"><span class="n">04</span><span>Did this job actually ask for it? An action nobody requested is refused even when all three above allow it.</span></div>
+      <div class="all">ALL FOUR, OR NOTHING &nbsp;·&nbsp; five strong properties and one dead one is a refusal, and the dead one gets named. Nothing averages out.</div>
+    </div>
+    <p class="muted" style="margin-top:1.8rem">A person has the last word and they can only say no. Approval cannot push an action through a check that failed, and a policy written without that gate is rejected when it loads, so nobody disables it by forgetting it.</p>
+    <p class="muted">Every step writes a receipt, hash-linked to the one before it and signed. Hand that file to a customer, an auditor or a court and they check it themselves with a command that ships in the package. They do not have to trust you, and they do not have to call us.</p>
+  </section>
+
+  <section>
+    <h2 class="sec">Three things you will not find elsewhere</h2>
     <ul class="rows">
-      <li><b>It refuses by construction, not by threshold</b>
-        <span>A worker with five strong governance properties and one near-dead one does not average out to acceptable. It is refused, and the failing property is named.</span></li>
+      <li><b>It refuses on the weakest link, never the average</b>
+        <span>Scoring systems let a strong result cover a bad one. Here a single failed condition stops the action and the output names which one. There is no total high enough to pass a refusal.</span></li>
       <li><b>It ships the record of its own defeats</b>
-        <span>Ten forgeries were run against its evidence chain and all ten are caught. Two were missed in v9.1 and fixed. One was <b>structural</b>, disclosed for months as unfixable for a hash chain, because the holder can run every computation the verifier can. It was closed by signing each receipt with a key the holder does not have. Signing then opened two new attacks and both are closed. Every one is asserted as a passing test, so none can be quietly dropped. All ten were re-run against the shipped verifier before this page was published. They are ten attacks we thought of; an attack nobody here thought of is not in that number.</span></li>
-      <li><b>Three prior versions had a flagship claim measured false</b>
-        <span>Both were repaired and both repairs were reversion-proven. Those records ship with the package rather than being cleaned out of it.</span></li>
+        <span>Ten forgeries were run against its evidence chain and all ten are caught. Each is a passing test, so none can be quietly dropped. They are ten attacks we thought of; an attack nobody here thought of is not in that number.</span></li>
+      <li><b>Three earlier versions had a flagship claim measured false</b>
+        <span>Each was found by attacking the claim rather than restating it, repaired, and proven by putting the defect back and watching the test fail. Those records ship with the package instead of being cleaned out of it.</span></li>
     </ul>
     <table class="forge">
       <tr><td>rewrite one receipt's status</td><td>CAUGHT</td></tr>
@@ -320,39 +248,40 @@
       <tr><td>delete a receipt from the middle</td><td>CAUGHT</td></tr>
       <tr><td>swap two adjacent receipts</td><td>CAUGHT</td></tr>
       <tr><td>remove the head receipt</td><td>CAUGHT</td></tr>
-      <tr><td>drop the last receipt</td><td>CAUGHT, missed in v9.1</td></tr>
-      <tr><td>empty ledger</td><td>CAUGHT, missed in v9.1</td></tr>
-      <tr><td>tamper then recompute the chain</td><td>CAUGHT, was structural</td></tr>
-      <tr><td>re-sign a forged ledger with the forger's own key</td><td>CAUGHT by key pinning</td></tr>
-      <tr><td>strip one receipt's signature</td><td>CAUGHT, part-signed is broken</td></tr>
+      <tr><td>drop the last receipt</td><td>CAUGHT</td></tr>
+      <tr><td>empty ledger</td><td>CAUGHT</td></tr>
+      <tr class="was"><td>tamper, then recompute the whole chain</td><td>WAS UNFIXABLE</td></tr>
+      <tr><td>re-sign a forged ledger with your own key</td><td>CAUGHT</td></tr>
+      <tr><td>strip one receipt's signature</td><td>CAUGHT</td></tr>
     </table>
+    <p class="caption">The eighth was disclosed for months as structural and unfixable, because a hash chain lets whoever holds it run every computation the verifier can. It closed by signing each receipt with a key the holder does not have. Signing then opened the two below it, and both are closed.</p>
   </section>
 
   <section>
-    <h2>What it is not</h2>
+    <h2 class="sec">What it will not do for you</h2>
     <ul class="rows">
-      <li><b>Not tamper-proof</b>
-        <span>Receipts are signed, so a recipient or anyone else holding the ledger cannot forge one. It is not evidence against whoever holds the <b>signing key</b>. That is not a gap to engineer away, it is what a signature means, and it moves the question from "can this be forged" to "who held the key", which an organization can answer.</span></li>
-      <li><b>Not an agent framework, and not a competitor to one</b>
-        <span>It is the layer that decides whether an action is permitted, and what record exists afterwards.</span></li>
-      <li><b>Not portable across machines, yet</b>
-        <span>Runs are deterministic at a fixed path and reproduce byte-identical receipt hashes there. Receipts embed absolute paths, so the same run on another machine produces different hashes. Named in the brief.</span></li>
+      <li><b>It does not protect you from yourself</b>
+        <span>Receipts are signed, so a customer, an auditor or anyone else holding the file cannot forge one. Whoever holds the signing key still can. That is what a signature means, and it turns "could this have been faked" into "who had the key", which your own access records can answer.</span></li>
+      <li><b>It is not an agent framework and does not replace one</b>
+        <span>Keep whatever you build agents with. This sits underneath and rules on the actions they take.</span></li>
+      <li><b>Receipt hashes do not survive a move between machines</b>
+        <span>Runs are deterministic and reproduce identical hashes at a fixed path. Move the folder and the paths inside the receipts change, so the hashes change with them. Named in the technical brief rather than discovered by you.</span></li>
     </ul>
   </section>
 
   <section>
-    <h2>Before you spend time on this</h2>
+    <h2 class="sec">Two reasons you might walk away</h2>
     <div class="disclose">
-      <p><b>Nobody has run it but us.</b> No production deployment. No external user. We would rather you hear that here than find it.</p>
-      <p><b>There is no patent and there will not be one.</b> The work was assessed against prior art and a filing was judged not warranted. The reasoning was written down rather than left as a gap. This is a copyright, trade-secret and contract asset.</p>
+      <p><b>We are the only ones who have run it.</b> No paying customer, no production install, no third party has touched it. You would find that out in your first technical call. Better you have it now.</p>
+      <p><b>There is no patent and there will not be one.</b> The work was checked against prior art and a filing was judged not worth making, and the reasoning is written down rather than left as a silence. What transfers is the copyright, the trade secrets and the contract.</p>
     </div>
-    <p class="muted" style="margin-top:1.6rem">46 of 46 tests pass cold on Python 3.12, standard library only, no network, no dependencies, offline. The internal manifest is generated from the tree and refuses when the two disagree, because a hand-typed count is what went wrong twice.</p>
+    <p class="muted" style="margin-top:1.8rem">46 of 46 tests pass from a cold extraction on Python 3.12. Standard library only. No dependencies, no network, no account, no GPU. The internal file manifest is generated from the folder and refuses when the two disagree, because a hand-typed count is what went wrong twice.</p>
   </section>
 
-  <div class="contact">
-    <h2>Terms</h2>
-    <p>Available for outright sale or license. Delivered as a technical packet with provenance, hashes, and the full defect history. Evaluation copies are confidential and carry no patent license.</p>
-    <a class="mailto" href="mailto:hello@abernate.com?subject=ABERNATE%20packet%20request">hello@abernate.com</a>
+  <div class="ask">
+    <h2 class="sec">What you would be buying</h2>
+    <p>Sold outright or licensed. You get the source, the hashes, the provenance record and every defect ever found in it, including the ones still open. Evaluation copies are confidential and grant no patent license, because there is no patent to grant.</p>
+    <a class="mailto" href="mailto:hello@abernate.com?subject=ABERNATE">hello@abernate.com</a>
   </div>
 
   <footer>
