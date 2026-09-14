@@ -169,8 +169,15 @@
 
   <div class="hero">
     <h1>The AI feature works. The customer will not turn it on.</h1>
-    <p class="kick">It clears the demo, then it dies in the customer's security and legal review. Not because the model is wrong, but because nobody on their side can answer for what it did. This is the part that gets it through.</p>
+    <p class="kick"><b>ABERNATE is a release gate for automated work.</b> The feature clears the demo, then it dies in the customer's security and legal review. Not because the model is wrong, but because nobody on their side can answer for what it did. This is the part that gets it through.</p>
   </div>
+
+  <section>
+    <h2 class="sec">The review always lands on the same question</h2>
+    <p>An agent classifies a document as privileged and holds it. Months later opposing counsel asks how that call was made. The vendor can produce a log showing the classification happened and a score attached to it. Neither establishes which policy permitted the hold, what the agent was allowed to reach, or whether a person on the client side ever signed for it.</p>
+    <p>That gap is why security review takes two quarters. It is not scepticism about the model. It is that the reviewer is the one whose name ends up on the answer, and right now the answer is an assurance from a vendor.</p>
+    <p>Most governance tooling settles this at deploy time, in a configuration review signed off once. ABERNATE settles it at the action, every time, and leaves an artifact the reviewer can check without calling the vendor.</p>
+  </section>
 
   <div class="receipt">
     <div class="receipt-head">WHAT THE CUSTOMER'S COUNSEL GETS HANDED. VERBATIM.</div>
@@ -196,30 +203,25 @@
       <div><b>PASS</b><span>The job worked. Four steps ran, none errored.</span></div>
       <div><b>VALID</b><span>Each step wrote a signed record, and they still agree with each other.</span></div>
       <div><b>1.0 ACROSS THE BOARD</b><span>Nothing partial. Every action covered by a stated authority.</span></div>
-      <div class="h"><b>released: false</b><span>And it shipped nothing, because no person had approved it.</span></div>
+      <div class="h"><b>released: false</b><span>It shipped nothing. <b>squad_leader</b> is the named human who has to clear a release, and none had.</span></div>
     </div>
   </div>
   <p class="caption">Output from the sample that ships with the package. Every step ran, every check passed, and it shipped nothing, because no human had cleared it. Success is not permission, and being able to show the difference is what the review is asking for.</p>
 
-</div>
-
-<div class="money">
+  <div class="money">
   <div class="wrap">
     <h2>The deal does not die on price. It dies in security review.</h2>
     <p>Engineering built the feature. Sales sold it. Then it sits in a customer's approval queue for two quarters and closes at a discount or not at all, because the answer to one question is a log file and a confidence score.</p>
     <p>That question is <b>"how did it decide, and who authorized it?"</b> A signed receipt per action, naming the policy that allowed it and the human who cleared it, is an answer their counsel can take to a board. It moves the objection out of the sales cycle.</p>
-    <p class="small">Three other lines show up in the business case and none of them are ours to quantify. EU AI Act exposure runs to &euro;35 million or 7% of turnover, and Finland has been enforcing since January 2026, which is a deadline a buyer already has. Audit evidence that is assembled by people at consulting rates gets produced per action instead, at no cost. And when an agent does cause a loss, proving what was authorized decides whether the vendor or the customer eats it, which is a contract term long before it is a lawsuit. <b>Nobody has measured a dollar of this yet, so none will be printed here.</b></p>
-  </div>
+    <p class="small">Three other lines show up in the business case and none are ours to quantify. <b>Regulatory:</b> EU AI Act exposure runs to &euro;35 million or 7% of turnover, and Finland has been enforcing since January 2026, which is a deadline the buyer already has. <b>Audit:</b> evidence assembled by people at consulting rates gets produced per action instead, at no cost. <b>Liability:</b> proving what was authorized decides whether the vendor or the customer eats a loss, which is a contract term long before it is a lawsuit.</p>
+    <p style="margin-top:1.6rem"><b>No customer has measured a dollar of any of this, so no dollar figure appears on this page.</b></p>
+      <p style="margin-top:2.2rem"><a href="mailto:hello@abernate.com?subject=ABERNATE" style="font-family:'JetBrains Mono',monospace;font-weight:500">hello@abernate.com</a> &nbsp;·&nbsp; <span class="small">the technical packet, on request</span></p>
+</div>
+</div>
+
 </div>
 
 <div class="wrap">
-
-  <section>
-    <h2 class="sec">The review always lands on the same question</h2>
-    <p>An agent classifies a document as privileged and holds it. Months later opposing counsel asks how that call was made. The vendor can produce a log showing the classification happened and a score attached to it. Neither establishes which policy permitted the hold, what the agent was allowed to reach, or whether a person on the client side ever signed for it.</p>
-    <p>That gap is why security review takes two quarters. It is not scepticism about the model. It is that the reviewer is the one whose name ends up on the answer, and right now the answer is an assurance from a vendor.</p>
-    <p>Most governance tooling settles this at deploy time, in a configuration review signed off once. ABERNATE settles it at the action, every time, and leaves an artifact the reviewer can check without calling the vendor.</p>
-  </section>
 
   <section>
     <h2 class="sec">Four things must agree, or it does not happen</h2>
@@ -242,26 +244,10 @@
         <span>Scoring systems let a strong result cover a bad one. Here a single failed condition stops the action and the output names which one. There is no total high enough to pass a refusal.</span></li>
       <li><b class="hl">It ships the record of its own defeats</b>
         <span>Ten forgeries were run against its evidence chain and all ten are caught. One of them was disclosed for months as structurally unfixable, and is now closed. Each is a passing test, so none can be quietly dropped. They are ten attacks this team thought of; an attack nobody here thought of is not in that number. <b>The list, the method, and the record of which ones got through first, ship with the packet.</b></span></li>
-      <li><b>Three earlier versions had a flagship claim measured false</b>
-        <span>Each was found by attacking the claim rather than restating it, repaired, and proven by putting the defect back and watching the test fail. Those records ship with the package instead of being cleaned out of it.</span></li>
+      <li><b>Every claim it makes has been attacked, including by us</b>
+        <span>Three times a headline claim was tested and found false before a buyer saw it. Each was repaired and then proven by putting the defect back and watching the test fail, which is the only way to know a fix works. That history ships with the package, because a product whose claims have never been attacked is one nobody has checked.</span></li>
     </ul>
     
-  </section>
-
-  <section>
-    <h2 class="sec">What it will not do</h2>
-    <ul class="rows">
-      <li><b>It does not protect an organization from its own key holders</b>
-        <span>Receipts are signed, so the customer, the auditor and opposing counsel cannot forge one. The security team holding the signing key still can. That is what a signature means, and it turns "could this have been faked" into "who held the key on 14 March", which access records already answer.</span></li>
-      <li><b>It does not prove the decision was right</b>
-        <span>It proves the action followed the authorities that governed it: which policy allowed it, under what capability, and who cleared it. Whether holding that document was legally correct is a judgement a lawyer makes, and no machine on this page makes it. Anyone who tells a court otherwise will be taken apart on it.</span></li>
-      <li><b>It has been measured at thousands of files, not millions</b>
-        <span>The published run covers 4,579 files and 100 MB of one public source release. Throughput at enterprise document volume has not been measured, and no claim is made about it. The corpus is code, not email or PDFs, so the file handling is proven and the document-type coverage is not.</span></li>
-      <li><b>It is not an agent framework and does not replace one</b>
-        <span>It sits underneath whatever framework the agents are built with, and rules on the actions they take.</span></li>
-      <li><b>Receipt hashes do not survive a move between machines</b>
-        <span>Runs are deterministic and reproduce identical hashes at a fixed path. Move the folder and the paths inside the receipts change, so the hashes change with them. Named in the technical brief rather than discovered during evaluation.</span></li>
-    </ul>
   </section>
 
   <section>
@@ -277,6 +263,21 @@
     </div>
     <p class="caption">The check ships in the package. <code>reproduce.py</code> downloads that tarball, verifies the sha256, grants the corpus through a contract it prints and then revokes, runs the sweep, and compares every figure above against what came out. Exit 0 means the claim held on that machine. It takes about nine seconds.</p>
     <p class="muted" style="margin-top:2rem">One more thing happened on the way in, and it was not staged. The first attempt was refused before a single file was read: <code style="font-size:.78rem">read path outside authority</code>. No worker contract declared that corpus, so nothing touched it until one did. That is the gate working on data it had never seen.</p>
+  </section>
+
+  <section>
+    <h2 class="sec">What it will not do</h2>
+    <ul class="rows">
+      <li><b>It does not protect an organization from its own key holders</b>
+        <span>Receipts are signed, so the customer, the auditor and opposing counsel cannot forge one. The security team holding the signing key still can. That is what a signature means, and it turns "could this have been faked" into "who held the key on 14 March", which access records already answer.</span></li>
+      <li><b>It does not prove the decision was right</b>
+        <span>It proves the action followed the authorities that governed it: which policy allowed it, under what capability, and who cleared it. Whether holding that document was legally correct is a judgement a lawyer makes, and no machine on this page makes it. Anyone who tells a court otherwise will be taken apart on it.</span></li>
+      <li><b>It has been measured at thousands of files, not millions</b>
+        <span>The published run covers 4,579 files and 100 MB of one public source release. Throughput at enterprise document volume has not been measured, and no claim is made about it. The corpus is code, not email or PDFs, so the file handling is proven and the document-type coverage is not.</span></li>
+      <li><b>It is not an agent framework and does not replace one</b>
+        <span>It sits underneath whatever framework the agents are built with, and rules on the actions they take.</span></li>
+      
+    </ul>
   </section>
 
   <section>
