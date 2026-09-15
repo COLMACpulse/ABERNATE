@@ -188,7 +188,7 @@
 
   <div class="hero">
     <h1>An agent gets approved once. Then it acts a thousand times.</h1>
-    <p class="kick">ABERNATE checks each action before it happens. Four rules have to agree, or the action does not run. A person has to clear a release, and that person can only say no. Every action gets a receipt that someone outside the company can check.</p>
+    <p class="kick">ABERNATE checks each action before it happens. Four rules have to agree, or the action does not run. A person has to clear a release, and that person can only say no. Every step writes a signed receipt, and a recipient who was given the right verification key can check it themselves.</p>
 
   <div class="stats">
     <div><b>82.9%</b><span>of organizations report that security or compliance reviews have delayed AI projects from moving into production</span></div>
@@ -243,7 +243,7 @@
     <h2>Agents ship late, or ship restricted.</h2>
     <p>An agent that clears review with its autonomy cut is not a win, it is the budget spent and the capability withheld. An agent still in review at month six is the same money with nothing to show at all.</p>
     <p>Both happen for one reason: the reviewer has no control to point at, so the only levers left are <b>delay</b> and <b>restrict</b>. Give them a gate that refuses on the action itself, and a signed record of every refusal and every clearance, and the conversation changes from how much to take away to what evidence gets produced.</p>
-    <p class="small">Three lines follow from that and none are ours to quantify. <b>Regulatory:</b> EU AI Act exposure runs to &euro;35 million or 7% of turnover, and Finland has been enforcing since January 2026. <b>Audit:</b> evidence assembled by people at consulting rates gets produced per action instead, at no cost. <b>Liability:</b> proving what was authorized decides whether the vendor or the customer eats a loss, which is a contract term long before it is a lawsuit.</p>
+    <p class="small">Regulatory exposure, audit cost and liability allocation all follow from this and none are ours to quantify. They are the buyer's arithmetic, not our claim.</p>
     <p style="margin-top:1.6rem"><b>No customer has measured a dollar of any of this, so no dollar figure appears on this page.</b></p>
     <p style="margin-top:2.2rem"><a href="mailto:hello@abernate.com?subject=ABERNATE" style="font-family:'JetBrains Mono',monospace;font-weight:500">hello@abernate.com</a> &nbsp;&middot;&nbsp; <span class="small">the technical packet, on request</span></p>
   </div>
@@ -264,7 +264,7 @@
       <div class="all">ALL FOUR, OR NOTHING &nbsp;·&nbsp; five strong properties and one dead one is a refusal, and the dead one gets named. Nothing averages out.</div>
     </div>
     <p class="muted" style="margin-top:1.8rem">A named human has the last word and can only say no. Their GO cannot push an action through a check that already failed, and a policy written without that gate is rejected the moment it loads, so no engineer disables it by forgetting it.</p>
-    <p class="muted">Every step writes a receipt, hash-linked to the one before it and signed. That file goes to the customer's lawyer, the SOC 2 auditor or opposing counsel. Each checks it with a command that ships in the package. None has to trust the operator, and none has to call us.</p>
+    <p class="muted">Every step writes a receipt, hash-linked to the one before it and signed. A step can cover many files, so this is a record per step, not per file touched. That file goes to the customer's lawyer, the SOC 2 auditor or opposing counsel. Each checks it with a command that ships in the package, against a verification key they were given separately. They still have to trust where that key and that package came from. What they do not have to accept is the operator's word that the ledger is unaltered.</p>
   </section>
 
   <section>
@@ -275,7 +275,7 @@
       <li><b class="hl">The attacks that beat it are in the box</b>
         <span>Ten forgeries were run against its evidence chain and all ten are caught. One of them was disclosed for months as structurally unfixable, and is now closed. Each is a passing test, so none can be quietly dropped. They are ten attacks this team thought of; an attack nobody here thought of is not in that number. <b>The list, the method, and the record of which ones got through first, ship with the packet.</b></span></li>
       <li><b>Every claim here has been attacked, including by us</b>
-        <span>Three times a headline claim was tested and found false before a buyer saw it. Each was repaired and then proven by putting the defect back and watching the test fail, which is the only way to know a fix works. That history ships with the package, because a product whose claims have never been attacked is one nobody has checked.</span></li>
+        <span>Some of the strongest tests in here exist because earlier versions failed them. Those failures remain in the record: the human gate was wrong once, tail truncation survived once, a full-chain reforge exposed a structural weakness, and closing it with signatures opened a new attack that key pinning then closed. Each is now a passing test, so none can be quietly dropped.</span></li>
     </ul>
     
   </section>
