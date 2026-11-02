@@ -35,22 +35,38 @@ That is the whole thing. No build, no action, no workflow file.
 
 ---
 
-## Later, when the domain is ready
+## The domain
 
-There is deliberately **no `CNAME` file here**. A `CNAME` in the repository with no
-DNS behind it makes GitHub try to serve the custom domain, fail, and take the
-github.io address down with it. So it is left out until the DNS exists.
+`abernate.com` is live and the `CNAME` file in this repository holds it. Keep it.
 
-When you get to it:
+This section used to say there was "deliberately no `CNAME` file here", which was
+true before the DNS existed and false afterwards. The file shipped, the note did
+not get updated, and the two contradicted each other in the same repository. It
+is corrected rather than deleted, because that is the sort of thing this project
+is supposed to notice.
 
-1. At the DNS host, delete the default parking records first. They will fight
-   yours. Then point the apex at GitHub's four addresses and the `www` label at
+The original reasoning still holds in reverse: a `CNAME` with no DNS behind it
+makes GitHub try to serve the custom domain, fail, and take the `github.io`
+address down with it. Now that the DNS exists, removing the `CNAME` would break
+the custom domain instead.
+
+If the domain ever has to be re-pointed:
+
+1. At the DNS host, delete any parking records first. They will fight yours.
+   Point the apex at GitHub's four addresses and the `www` label at
    `<account>.github.io.` Confirm the current addresses against GitHub's own
    documentation rather than any copy of them, including this one.
-2. **Settings → Pages → Custom domain**, type `abernate.com`, Save. GitHub creates
-   the `CNAME` file itself at that moment. Set it there, not by hand, so the file
-   and the setting cannot disagree.
+2. **Settings → Pages → Custom domain**, type `abernate.com`, Save. GitHub writes
+   the `CNAME` file itself. Set it there, not by hand, so the file and the
+   setting cannot disagree.
 3. Tick **Enforce HTTPS** once it stops being greyed out.
+
+## After you push
+
+GitHub Pages takes a minute or two to rebuild, and browsers cache hard. If the
+live page still shows the old copy, check the commit landed on the branch Pages
+is serving, then reload past the cache. The fastest honest check is to search the
+rendered page for a phrase that only exists in the new version.
 
 ---
 
